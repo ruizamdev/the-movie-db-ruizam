@@ -7,5 +7,16 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Armando Ruiz",
-  "license": "MIT"
+  "license": "MIT",
+  "directories": {
+    "example": "example"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ruiz7am/the-movie-db-ruizam.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Ruiz7am/the-movie-db-ruizam/issues"
+  },
+  "homepage": "https://github.com/Ruiz7am/the-movie-db-ruizam#readme"
 }
