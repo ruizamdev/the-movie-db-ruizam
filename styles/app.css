@@ -21,7 +21,7 @@ html {
 }
 
 body {
-  color: var(--primary-light-color);
+  color: var(--white);
   font-family: var(--font);
   font-size: 1.6rem;
 }
@@ -110,6 +110,11 @@ body {
 .hero-info__movie-btn:hover {
   color: var(--primary-dark-color);
   background-color: var(--secondary-light-color);
+}
+
+.hero-info__movie-btn:active {
+  color: var(--primary-light-color);
+  background-color: var(--secondary-dark-color);
 }
 
 .header-searchForm {
