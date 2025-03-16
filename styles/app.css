@@ -14,6 +14,7 @@
   
   /* fuentes */
   --font: "Inter", sans-serif;
+  --font-logo: "Righteous", sans-serif;
 }
 
 html {
@@ -63,7 +64,10 @@ body {
 
 .header-title {
   color: var(--secondary-light-color);
-  font-weight: 900;
+  font-family: var(--font-logo);
+  font-weight: 600;
+  font-size: 5.6rem;
+  letter-spacing: 4px;
   text-shadow: 1px 1px 3px rgb(0,0,0,0.35);
 }
 
@@ -133,12 +137,13 @@ body {
 .header-searchForm {
   display: flex;
   align-items: center;
+  gap: 20px;
   width: fit-content;
   justify-content: center;
   flex-wrap: nowrap;
 }
 
-.header-searchForm input {
+.searchForm-input {
   width: 26vw;
   background-color: #f5f5f5;
   color: var(--white);
@@ -147,32 +152,38 @@ body {
   border-radius: 4px;
   outline: none;
   border: none;
+  border-block-end: solid 1px var(--secondary-dark-color);
+  font-size: 1.8rem;
   background-color: rgb(0,0,0,0.0);
   line-height: 1.15;
+  transform: translateX(520px);
 }
 
-.header-searchForm input:focus {
+.searchForm-input:hover {
+  border-block-end: solid 2px var(--white);
+}
+
+.searchForm-input:focus {
   border-bottom: 2px solid var(--secondary-light-color);
   border-radius: 4px 4px 2px 2px;
-}
-
-.header-searchForm input:hover {
-  outline: 1px solid lightgrey;
 }
 
 .search-icon-container {
   display: inline-block;
   width: 30px;
   height: 30px;
+  cursor: pointer;
 }
 
 .search-icon {
   width: 100%;
+  transition: all 300ms;
 }
 
-.search-icon:hover path {
-  fill: #e2e2e2;
+.search-icon-container:hover .search-icon {
+  transform: scale(1.12)
 }
+
 
 main {
   background-image: linear-gradient(to bottom, #000000, #12060d, #1a0c19, #1c1225, #171934);

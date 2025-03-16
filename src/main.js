@@ -10,6 +10,33 @@ function navbarScrollTransform () {
   })
 }
 
+function searchBarInteractive () {
+  const searchIconContainer = document.querySelector('.search-icon-container');
+  const searchIconPath = searchIconContainer.querySelector('#search-icon .path');
+  const searchFormInput = document.querySelector('.searchForm-input');
+  searchIconContainer.addEventListener('mouseenter', () => {
+    searchIconPath.setAttribute('style', 'fill:#e2e2e2;');
+  });
+  searchIconContainer.addEventListener('mouseleave', () => {
+    searchIconPath.setAttribute('style', 'fill:#77767c;')
+  });
+  searchIconContainer.addEventListener('click', () => {
+    searchFormInput.classList.remove('inactive');
+    searchFormInput.setAttribute('style', 'transform: translateX(0px)');
+    console.log(searchFormInput);
+  });
+  document.addEventListener('click', (e) => {
+    const target = e.target;
+    console.log(target.id);
+    if (target.id === 'search-icon' || target.id === 'search-input') {
+      return;
+    } else {
+      searchFormInput.classList.add('inactive');
+      searchFormInput.setAttribute('style', 'transform: translateX(520px)')
+    }
+  })
+}
+
 async function getTrendingMoviesPreview() {
   const response = await fetch(`https://api.themoviedb.org/3/trending/movie/day?api_key=bbda25d057b9c8c6bbf7f6966d3f9f1b`);
   const data = await response.json();
@@ -50,4 +77,5 @@ async function getTrendingMoviesPreview() {
 }
 
 navbarScrollTransform();
+searchBarInteractive();
 getTrendingMoviesPreview();
