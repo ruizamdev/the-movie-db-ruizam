@@ -11,27 +11,43 @@
 </head>
 <body>
   
-  <div class="hero">
+  <div id="hero" class="hero">
     <header id="header" class="header-container">
       <span class="header-arrow inactive">&lt;</span>
-      <h1 class="header-title">The Movie DB</h1>
+      <h1 class="header-title">MEX</h1>
       <h1 class="header-title header-title--categoryView inactive">Acción</h1>
-  
-      <form id="searchForm" class="header-searchForm">
-        <input type="text" placeholder="Search..." />
-      </form>
-      <figure id="profile-avatar" class="profile-avatar-container">
-        <img src="./assets/avatar.png" alt="profile avatar" class="profile-avatar">
-      </figure>
+      
+      <div class="user-assets">
+        <form id="searchForm" class="header-searchForm">
+          <input type="text" placeholder="Search..." class="inactive"/>
+          <span class="search-icon-container">
+            <svg version="1.1" class="search-icon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+              viewBox="0 0 410.587 410.588" xml:space="preserve">
+              <g>
+                <path style="fill:#77767c;" d="M410.587,371.351l-50.044-50.044l-39.866-39.866c20.505-28.842,32.685-63.996,32.685-102.009
+                c0-97.424-79.263-176.687-176.684-176.687C79.251,2.745,0,82.008,0,179.432c0,97.423,79.251,176.675,176.678,176.675
+                c40.698,0,78.116-13.963,108.01-37.167l68.508,68.508c0.841,0.841,1.784,1.509,2.705,2.207l18.194,18.188L410.587,371.351z
+                M176.689,314.548c-74.503-0.006-135.111-60.622-135.111-135.111c0-74.5,60.614-135.108,135.111-135.108
+                c74.498,0,135.108,60.608,135.108,135.108c0,30.998-10.59,59.507-28.218,82.333c-5.833,7.537-12.374,14.49-19.642,20.654
+                C240.374,302.409,209.94,314.548,176.689,314.548z" />
+              </g>
+            </svg>
+          </span>
+        </form>
+        <figure id="profile-avatar" class="profile-avatar-container">
+          <img src="./assets/avatar.png" alt="profile avatar" class="profile-avatar">
+        </figure>
+      </div>
+
     </header>
     <div id="hero-info" class="hero-info-container">
-      <h2 class="hero-info__title">The boys</h2>
+      <h2 class="hero-info__title"></h2>
       <div class="movie-yearRate">
-        <span>2020</span>
-        <span>18+</span>
-        <span>4 temporadas</span>
+        <span class="hero-info__year"></span>
+        <span class="hero-info__rate"></span>
+        <span class="hero-info__seasons"></span>
       </div>
-      <p class="hero-info__synopsis">This is a dark and satirical superhero series where vigilantes, known as "The Boys," fight against corrupt superheroes, revered as celebrities, who abuse their powers, exposing the truth about the supergroup "The Seven" and the corporation Vought International.</p>
+      <p class="hero-info__synopsis"></p>
       <button class="hero-info__movie-btn">Ver detalles
       </button>
     </div>
@@ -45,55 +61,7 @@
       </div>
   
       <article class="trendingPreview-movieList">
-        <div class="movie-container">
-          <img
-            src="https://image.tmdb.org/t/p/w300/adOzdWS35KAo21r9R4BuFCkLer6.jpg"
-            class="movie-img"
-            alt="Nombre de la película"
-          />
-        </div>
-        <div class="movie-container">
-          <img
-            src="https://image.tmdb.org/t/p/w300/adOzdWS35KAo21r9R4BuFCkLer6.jpg"
-            class="movie-img"
-            alt="Nombre de la película"
-          />
-        </div>
-        <div class="movie-container">
-          <img
-            src="https://image.tmdb.org/t/p/w300/adOzdWS35KAo21r9R4BuFCkLer6.jpg"
-            class="movie-img"
-            alt="Nombre de la película"
-          />
-        </div>
-        <div class="movie-container">
-          <img
-            src="https://image.tmdb.org/t/p/w300/adOzdWS35KAo21r9R4BuFCkLer6.jpg"
-            class="movie-img"
-            alt="Nombre de la película"
-          />
-        </div>
-        <div class="movie-container">
-          <img
-            src="https://image.tmdb.org/t/p/w300/adOzdWS35KAo21r9R4BuFCkLer6.jpg"
-            class="movie-img"
-            alt="Nombre de la película"
-          />
-        </div>
-        <div class="movie-container">
-          <img
-            src="https://image.tmdb.org/t/p/w300/adOzdWS35KAo21r9R4BuFCkLer6.jpg"
-            class="movie-img"
-            alt="Nombre de la película"
-          />
-        </div>
-        <div class="movie-container">
-          <img
-            src="https://image.tmdb.org/t/p/w300/adOzdWS35KAo21r9R4BuFCkLer6.jpg"
-            class="movie-img"
-            alt="Nombre de la película"
-          />
-        </div>
+        
       </article>
     </section>
   
@@ -216,10 +184,9 @@
   </main>
   
   <footer>
-    <h3>Make with ❤️ from 🟩⬜🟥</h3>
+    <h3>Make with ❤️ from 🇲🇽</h3>
   </footer>
   
-  <script src="./src/secrets.js"></script>
-  <script src="./src/main.js" type="module"></script>
+  <script src="./src/main.js"></script>
 </body>
 </html>
