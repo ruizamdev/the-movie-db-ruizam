@@ -31,7 +31,7 @@ async function getTrendingMoviesPreview() {
 
   // trending section populating
   const trendingPreviewMoviesContainer = document.querySelector('#trendingPreview .trendingPreview-movieList');
-  movies.shift()
+  // movies.shift()
   movies.forEach(movie => {
 
     const movieContainer = document.createElement('div');

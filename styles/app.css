@@ -57,11 +57,12 @@ body {
 }
 
 .header-container--scrolled {
-  background-color: rgba(0,0,0,0.87);
+  background-color: rgba(23, 25, 52, 0.90);
   box-shadow: 0 3px 10px rgba(0,0,0,0.15);
 }
 
 .header-title {
+  color: var(--secondary-light-color);
   font-weight: 900;
   text-shadow: 1px 1px 3px rgb(0,0,0,0.35);
 }
@@ -109,19 +110,19 @@ body {
   border: none;
   color: var(--white);
   font-size: 1.9rem;
-  background-color: var(--primary-dark-color);
+  background-color: rgb(from var(--primary-dark-color) r g b / 0.85);
   cursor: pointer;
   box-shadow: 0px 10px 20px -18px rgb(0,0,0,0.35);
 }
 
 .hero-info__movie-btn:hover {
   color: var(--primary-dark-color);
-  background-color: var(--secondary-light-color);
+  background-color: rgb(from var(--secondary-light-color) r g b / 0.85);
 }
 
 .hero-info__movie-btn:active {
   color: var(--primary-light-color);
-  background-color: var(--secondary-dark-color);
+  background-color: rgb(from var(--secondary-dark-color) r g b / 0.85);
 }
 
 .user-assets {
@@ -189,6 +190,10 @@ main {
   justify-content: space-between;
 }
 
+.trendingPreview-title, .categoriesPreview-title {
+  color: var(--secondary-light-color);
+}
+
 .trendingPreview-btn {
   color: var(--white);
   font-size: 1.8rem;
@@ -201,12 +206,13 @@ main {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 30px;
+  gap: 2.5%;
   flex-wrap: wrap;
 }
 
 .movie-container {
-  width: 11%;
+  width: 18%;
+  margin-block-end: 2.5%;
   cursor: pointer;
 }
 
