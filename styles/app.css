@@ -237,6 +237,10 @@ main {
   transition: filter 500ms;
 }
 
+.movie-container:hover {
+  outline: 2px solid var(--secondary-light-color);
+}
+
 .movie-container:hover .movie-img {
   filter: brightness(0.20);
 }

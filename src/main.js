@@ -42,25 +42,26 @@ async function getTrendingMoviesPreview() {
   const data = await response.json();
   
   const movies = data.results;
+  const moviesSorted = movies.sort((a, b) => b.popularity - a.popularity);
   // console.log({ movies });
 
   // hero populating
   const hero = document.querySelector('#hero');
   hero.style.backgroundImage = `url(https://image.tmdb.org/t/p/original${movies[0].backdrop_path})`
   const heroTitle = hero.querySelector('.hero-info__title');
-  heroTitle.innerHTML = `${movies[0].original_title}`
+  heroTitle.innerHTML = `${moviesSorted[0].original_title}`
   const heroYear = hero.querySelector('.hero-info__year');
-  heroYear.innerHTML = `${movies[0].release_date.substr(0, 4)}`;
+  heroYear.innerHTML = `${moviesSorted[0].release_date.substr(0, 4)}`;
   const heroRate = hero.querySelector('.hero-info__rate');
-  heroRate.innerHTML = `${movies[0].vote_average}`;
+  heroRate.innerHTML = `${moviesSorted[0].vote_average}`;
   const heroOverview = hero.querySelector('.hero-info__synopsis');
-  heroOverview.innerHTML = movies[0].overview;
+  heroOverview.innerHTML = moviesSorted[0].overview;
 
   // trending section populating
   const trendingPreviewMoviesContainer = document.querySelector('#trendingPreview .trendingPreview-movieList');
-  // movies.shift()
+  // movies.shift();
   let counter = 0;
-  movies.forEach(movie => {
+  moviesSorted.forEach(movie => {
     counter++;
     const movieContainer = document.createElement('div');
     movieContainer.classList.add('movie-container');
