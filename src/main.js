@@ -22,22 +22,18 @@ function searchBarInteractive () {
   });
   searchIconContainer.addEventListener('click', () => {
     searchFormInput.classList.remove('inactive');
-    searchFormInput.setAttribute('style', 'transform: translateX(0px)');
-    console.log(searchFormInput);
+    searchFormInput.focus();
+    document.addEventListener('click', (e) => {
+      if (e.target.id === 'search-icon' || e.target.id === 'search-input') {
+        return;
+      } else {
+        searchFormInput.classList.add('inactive');
+      }
+    })
   });
-  document.addEventListener('click', (e) => {
-    const target = e.target;
-    console.log(target.id);
-    if (target.id === 'search-icon' || target.id === 'search-input') {
-      return;
-    } else {
-      searchFormInput.classList.add('inactive');
-      searchFormInput.setAttribute('style', 'transform: translateX(520px)')
-    }
-  })
 }
 
-async function getTrendingMoviesPreview() {
+async function getTrendingMoviesPreview () {
   const response = await fetch(`https://api.themoviedb.org/3/trending/movie/day?api_key=bbda25d057b9c8c6bbf7f6966d3f9f1b`);
   const data = await response.json();
   
@@ -83,16 +79,16 @@ async function getTrendingMoviesPreview() {
     movieTitle.innerHTML = movie.title;
     const movieYear = document.createElement('span');
     movieYear.classList.add('movie-year');
-    movieYear.innerHTML = `Release date: ${movie.release_date}`
+    movieYear.innerHTML = `Release year: ${movie.release_date.substr(0, 4)}`
     const movieRate = document.createElement('span');
     movieRate.classList.add('movie-rate');
-    movieRate.innerHTML = `Rate: ${movie.vote_average}`;
+    movieRate.innerHTML = `Rate: ${movie.vote_average.toFixed(1)}`;
     const movieVotes = document.createElement('span');
     movieVotes.classList.add('movie-votes');
     movieVotes.innerHTML = `Votes: ${movie.vote_count}`;
     const moviePopularity = document.createElement('span');
     moviePopularity.classList.add('movie-popularity');
-    moviePopularity.innerHTML = `Popularity: ${movie.popularity}`;
+    moviePopularity.innerHTML = `Popularity: ${movie.popularity.toFixed(1)}`;
     const moreDetailsBtn = document.createElement('button');
     moreDetailsBtn.classList.add('moreDetails-btn');
     moreDetailsBtn.innerHTML = "More details"
@@ -119,6 +115,8 @@ async function getTrendingMoviesPreview() {
 
 
 }
+
+
 
 navbarScrollTransform();
 searchBarInteractive();

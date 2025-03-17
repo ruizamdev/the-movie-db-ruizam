@@ -8,7 +8,8 @@
   /* colores */
   --primary-dark-color: #171934;
   --secondary-dark-color: #77767c;
-  --secondary-light-color: #b8b7f8;
+  /* --secondary-light-color: #b8b7f8; */
+  --secondary-light-color: #cb8dec;
   --primary-light-color: #e8ddff;
   --white: #e2e2e2;
   
@@ -163,7 +164,6 @@ body {
   font-size: 1.8rem;
   background-color: rgb(0,0,0,0.0);
   line-height: 1.15;
-  transform: translateX(520px);
 }
 
 .searchForm-input:hover {
@@ -229,7 +229,6 @@ main {
   position: relative;
   width: 18%;
   margin-block-end: 2.5%;
-  cursor: pointer;
 }
 
 .movie-img {
@@ -273,6 +272,26 @@ main {
 .movie-popularity {
   font-size: 1.85rem;
   font-weight: 700;
+}
+
+.moreDetails-btn {
+  width: 40%;
+  height: 36px;
+  border: none;
+  cursor: pointer;
+  color: var(--white);
+  background-color: rgb(from var(--primary-dark-color) r g b / 0.85);
+  box-shadow: 0px 10px 20px -18px rgb(0,0,0,0.35);
+}
+
+.moreDetails-btn:hover {
+  color: var(--primary-dark-color);
+  background-color: rgb(from var(--secondary-light-color) r g b / 0.85);
+}
+
+.moreDetails-btn:active {
+  color: var(--primary-light-color);
+  background-color: rgb(from var(--secondary-dark-color) r g b / 0.85);
 }
 
 .categoriesPreview-container {
