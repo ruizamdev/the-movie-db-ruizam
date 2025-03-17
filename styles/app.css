@@ -58,21 +58,28 @@ body {
 }
 
 .header-container--scrolled {
-  background-color: rgba(23, 25, 52, 0.90);
+  background-color: rgba(23, 25, 52, 0.95);
   box-shadow: 0 3px 10px rgba(0,0,0,0.15);
 }
 
 .header-title {
-  color: var(--secondary-light-color);
   font-family: var(--font-logo);
   font-weight: 600;
   font-size: 5.6rem;
   letter-spacing: 4px;
   text-shadow: 1px 1px 3px rgb(0,0,0,0.35);
+  cursor: pointer;
+}
+
+.header-title:hover {
+  color: var(--secondary-light-color);
+  transform: scale(1.1);
+  transition: all 300ms;
 }
 
 .profile-avatar-container {
   width: 50px;
+  cursor: pointer;
 }
 
 .profile-avatar {
@@ -201,9 +208,6 @@ main {
   justify-content: space-between;
 }
 
-.trendingPreview-title, .categoriesPreview-title {
-  color: var(--secondary-light-color);
-}
 
 .trendingPreview-btn {
   color: var(--white);
@@ -222,6 +226,7 @@ main {
 }
 
 .movie-container {
+  position: relative;
   width: 18%;
   margin-block-end: 2.5%;
   cursor: pointer;
@@ -229,11 +234,41 @@ main {
 
 .movie-img {
   width: 100%;
+  transition: filter 500ms;
 }
 
-.movie-img:hover {
-  filter: brightness(0.25);
-  transition: filter 500ms;
+.movie-container:hover .movie-img {
+  filter: brightness(0.20);
+}
+
+
+
+.movie-details-container {
+  position: absolute;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 3%;
+  width: 100%;
+  height: 100%;
+  padding: 0 9%;
+  color: var(--white);
+  transition: display 500ms;
+}
+
+.movie-title {
+  font-size: 3rem;
+  font-weight: 800;
+}
+
+.movie-year,
+.movie-rate, 
+.movie-votes, 
+.movie-popularity {
+  font-size: 1.85rem;
+  font-weight: 700;
 }
 
 .categoriesPreview-container {
@@ -302,3 +337,6 @@ footer {
   display: none;
 }
 
+.invisible {
+  visibility: hidden;
+}
