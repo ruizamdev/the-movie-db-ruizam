@@ -7,7 +7,8 @@ const movieTitle = movieDetailsContainer.querySelector('.movie-title');
 const movieOriginalTitle = movieDetailsContainer.querySelector('.movie-originalTitle');
 const movieReleaseDate = movieDetailsContainer.querySelector('.movie-releaseDate');
 const movieGenresList = movieDetailsContainer.querySelector('.movie-genres');
-const movieRuntime = movieDetailsContainer.querySelector('.movie-rate');
+const movieRuntime = movieDetailsContainer.querySelector('.movie-runtime');
+const movieRate = movieDetailsContainer.querySelector('.movie-rate')
 const movieVotes = movieDetailsContainer.querySelector('.movie-votes');
 const moviePopularity = movieDetailsContainer.querySelector('.movie-popularity');
 const movieTagline = movieDetailsContainer.querySelector('.movie-tagline');
@@ -180,15 +181,12 @@ async function openMovieDetailsWindow (movieId) {
   const movieGenres = data.genres;
   const genres = [];
   movieGenres.forEach(genre => {
-    const genreSpan = document.createElement('span');
-    genreSpan.classList.add('genre');
-    genreSpan.innerHTML = `${genre}`;
-    genres.push(genreSpan);
-  });
-  genres.forEach(genre => {
-    movieGenresList.appendChild(genre);
-  });
+    genres.push(genre.name);
+  })
+  
+  movieGenresList.innerHTML = genres;
   movieRuntime.innerHTML = data.runtime;
+  movieRate.innerHTML = data.vote_average;
   movieVotes.innerHTML = data.vote_count;
   moviePopularity.innerHTML = data.popularity;
   movieTagline.innerHTML = data.tagline;

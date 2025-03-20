@@ -75,10 +75,56 @@ body {
 }
 
 .movie-details-div {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
   width: 40%;
   padding: 0 40px;
 }
 
+.movie-details-div .movie-title {
+  width: 100%;
+  font-size: 6.5rem;
+}
+
+.divider {
+  width: 100%;
+  height: 1px;
+  background-color: var(--white);
+}
+
+.movie-details-div .movie-originalTitle {
+  width: 100%;
+  margin: 10px 0;
+  font-size: 1.8rem;
+}
+
+.date-genres-div {
+  display: flex;
+}
+
+.movie-releaseDate {
+  display: inline-block;
+  margin: 5px 0;
+}
+
+.movie-genres {
+  display: inline-block;
+  margin: 5px 0;
+}
+
+.movie-runtime {
+  display: inline-block;
+  margin: 5px 0;
+}
+
+.movie-rates {
+  display: flex;
+}
+
+.movie-details-div .movie-tagline {
+  font-family: var(--font-logo);
+}
 /* From Uiverse.io by barisdogansutcu */
 .loader-animation svg {
   width: 3.25em;
