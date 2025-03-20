@@ -14,12 +14,51 @@
 </head>
 <body>
   
+  <div class="movie-details-window inactive">
+
+    <div class="loader-animation inactive">
+      <svg viewBox="25 25 50 50">
+        <circle r="20" cy="50" cx="50"></circle>
+      </svg>
+    </div>
+
+    <section class="movie-details-window__background inactive">
+      <article class="movie-details">
+        <figure class="movie-poster-container">
+          <img class="movie-poster">
+        </figure>
+        <div class="movie-details-div">
+          <h2 class="movie-title"></h2>
+          <h3 class="movie-originalTitle"></h3>
+          <span class="movie-releaseDate"></span>
+          <div class="movie-genres">
+
+          </div>
+          <span class="movie-runtime"></span>
+          <div class="movie-rate-container">
+            <span class="movie-rate"></span>
+          </div>
+          <div class="movie-votes-container">
+            <span class="movie-votes"></span>
+          </div>
+          <div class="movie-popularity-container">
+            <span class="movie-popularity"></span>
+          </div>
+          <p><i class="movie-tagline"></i></p>
+          <p class="movie-overview"></p>
+        </div>
+      </article>
+    </section>
+  </div>
+
   <div id="hero" class="hero">
     <header id="header" class="header-container">
       <span class="header-arrow inactive">&lt;</span>
-      <h1 class="header-title">mex</h1>
+      <div class="header-logo">
+        <h1 class="header-title">mex</h1>
+        <h2 class="header-subtitle">movie db</h2>
+      </div>
       <h1 class="header-title header-title--categoryView inactive">Acción</h1>
-      
       <div class="user-assets">
         <form id="searchForm" class="header-searchForm">
           <input type="text" placeholder="Search..." id="search-input" class="searchForm-input inactive"/>
@@ -51,15 +90,14 @@
         <span class="hero-info__seasons"></span>
       </div>
       <p class="hero-info__synopsis"></p>
-      <button class="hero-info__movie-btn">Ver detalles
+      <button class="hero-info__movie-btn details-button">Ver detalles
       </button>
     </div>
   </div>
-
   <main>
     <section id="trendingPreview" class="trendingPreview-container">
       <div class="trendingPreview-header">
-        <h2 class="trendingPreview-title">Top 20 en Tendencias</h2>
+        <h2 class="trendingPreview-title">20 Most Trending Movies</h2>
         <button class="trendingPreview-btn">Ver más</button>
       </div>
   
@@ -190,6 +228,6 @@
     <h3>Make with ❤️ from <strong>🇲🇽</strong> by <strong>@ruiz7am</strong></h3>
   </footer>
   
-  <script src="./src/main.js"></script>
+  <script src="./src/main.mjs" type="module"></script>
 </body>
 </html>
