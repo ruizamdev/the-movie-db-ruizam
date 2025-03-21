@@ -23,6 +23,9 @@
 
     <section class="movie-details-window__background inactive">
       <article class="movie-details">
+        <span class="close-window">
+          <svg width="50px" height="50px" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg"><path fill="#e2e2e2" d="M195.2 195.2a64 64 0 0 1 90.496 0L512 421.504 738.304 195.2a64 64 0 0 1 90.496 90.496L602.496 512 828.8 738.304a64 64 0 0 1-90.496 90.496L512 602.496 285.696 828.8a64 64 0 0 1-90.496-90.496L421.504 512 195.2 285.696a64 64 0 0 1 0-90.496z"/></svg>
+        </span>
         <figure class="movie-poster-container">
           <img class="movie-poster">
         </figure>
@@ -37,34 +40,41 @@
           </div>
 
           <div class="movie-rates">
-            <div class="movie-rate-container">
-              <span class="movie-rate"></span>
-              <span>Calificación de Usuarios</span>
+            <div class="movie-rate-container movie-rate-container">
+              <span class="movie-rate movie-rate"></span>
+              <span>Calificación</span>
             </div>
-            <div class="movie-votes-container">
+            <div class="movie-rate-container movie-votes-container">
               <span class="movie-votes"></span>
+              <span>Votos</span>
             </div>
-            <div class="movie-popularity-container">
+            <div class="movie-rate-container movie-popularity-container">
               <span class="movie-popularity"></span>
+              <span>Popularidad</span>
             </div>
           </div>
           <p><i class="movie-tagline"></i></p>
           <p class="movie-overview"></p>
         </div>
       </article>
-      <span class="close-window">
-        <svg width="50px" height="50px" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg"><path fill="#e2e2e2" d="M195.2 195.2a64 64 0 0 1 90.496 0L512 421.504 738.304 195.2a64 64 0 0 1 90.496 90.496L602.496 512 828.8 738.304a64 64 0 0 1-90.496 90.496L512 602.496 285.696 828.8a64 64 0 0 1-90.496-90.496L421.504 512 195.2 285.696a64 64 0 0 1 0-90.496z"/></svg>
-      </span>
     </section>
   </div>
 
   <div id="hero" class="hero">
     <header id="header" class="header-container">
-      <span class="header-arrow inactive">&lt;</span>
+      
       <div class="header-logo">
         <h1 class="header-title">mex</h1>
       </div>
-      <h1 class="header-title header-title--categoryView inactive">Acción</h1>
+      
+      <nav class="navbar-container">
+        <ul class="navbar">
+          <li><a href="#">Peliculas</a></li>
+          <li><a href="#">Series</a></li>
+          <li><a href="#">Personas</a></li>
+        </ul>
+      </nav>
+
       <div class="user-assets">
         <form id="searchForm" class="header-searchForm">
           <input type="text" placeholder="Search..." id="search-input" class="searchForm-input inactive"/>
@@ -72,7 +82,7 @@
             <svg version="1.1" id="search-icon" class="search-icon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
               viewBox="0 0 410.587 410.588" xml:space="preserve">
               <g>
-                <path class="path" style="fill:#77767c;" d="M410.587,371.351l-50.044-50.044l-39.866-39.866c20.505-28.842,32.685-63.996,32.685-102.009
+                <path class="path" style="fill:#9a99a0;" d="M410.587,371.351l-50.044-50.044l-39.866-39.866c20.505-28.842,32.685-63.996,32.685-102.009
                 c0-97.424-79.263-176.687-176.684-176.687C79.251,2.745,0,82.008,0,179.432c0,97.423,79.251,176.675,176.678,176.675
                 c40.698,0,78.116-13.963,108.01-37.167l68.508,68.508c0.841,0.841,1.784,1.509,2.705,2.207l18.194,18.188L410.587,371.351z
                 M176.689,314.548c-74.503-0.006-135.111-60.622-135.111-135.111c0-74.5,60.614-135.108,135.111-135.108

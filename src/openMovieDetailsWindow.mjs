@@ -36,7 +36,10 @@ export async function openMovieDetailsWindow (movieId) {
   moviePoster.setAttribute("src", `${posterImagesURL}${data.poster_path}`);
   movieTitle.innerHTML = data.title;
   movieOriginalTitle.innerHTML = data.original_title;
-  movieReleaseDate.innerHTML = data.release_date;
+  const getDate = data.release_date.split("-");
+  let [year, month, day] = getDate;
+  const date = new Date(Date.UTC(year, month, day));
+  movieReleaseDate.innerHTML = new Intl.DateTimeFormat("es-MX").format(date);
   const movieGenres = data.genres;
   const genres = [];
   movieGenres.forEach((genre) => {
@@ -58,9 +61,13 @@ export async function openMovieDetailsWindow (movieId) {
   movieGenresList.innerHTML = genres;
   movieRuntime.innerHTML = `1h${runtimeMinus1Hour}m`;
   movieRate.innerHTML = data.vote_average;
-  movieVotes.innerHTML = `${data.vote_count} Votos`;
-  moviePopularity.innerHTML = data.popularity;
-  movieTagline.innerHTML = `"${data.tagline}"`;
+  movieVotes.innerHTML = `${data.vote_count}`;
+  moviePopularity.innerHTML = `${data.popularity.toFixed(1)}%`;
+  if(data.tagline == null || data.tagline == undefined || data.tagline == '') {
+    console.warn('no tagline')
+  } else {
+    movieTagline.innerHTML = `"${data.tagline}"`;
+  }
   movieOverview.innerHTML = data.overview;
   const movieLinkBtn = movieDetailsDiv.querySelector(".movie-linkBtn");
   if (movieLinkBtn === null || movieLinkBtn === undefined) {
