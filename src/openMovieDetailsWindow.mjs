@@ -1,4 +1,5 @@
 import { 
+  api,
   movieDetailsWindow,
   movieDetailsWindowLoader,
   movieDetailsContainer,
@@ -21,15 +22,15 @@ import {
   closeWindow,
 } from "./constants.mjs";
 
+
 export async function openMovieDetailsWindow (movieId) {
   window.location.hash = `#movieID=${movieId}`;
   movieDetailsWindow.classList.remove("inactive");
   movieDetailsWindowLoader.classList.remove("inactive");
 
-  const response = await fetch(`https://api.themoviedb.org/3/movie/${movieId}?api_key=bbda25d057b9c8c6bbf7f6966d3f9f1b&language=es-MX`);
-  const data = await response.json();
+  const { data } = await api(`/movie/${movieId}`);
   const movieHomepage = data.homepage;
-  console.log(movieHomepage)
+  console.log(movieHomepage);
 
   movieDetailsWindowBackground.style.backgroundImage = `url("${backdropImagesURL}${data.backdrop_path}")`;
   moviePoster.setAttribute("src", `${posterImagesURL}${data.poster_path}`);

@@ -20,6 +20,7 @@
 
 html {
   font-size: 62.5%;
+  max-width: 1920px;
 }
 
 body {
@@ -51,7 +52,7 @@ body {
   width: 100%;
   height: 100%;
   background-size: cover;
-  background-position: left;
+  background-position: initial;
 }
 
 .movie-details {
@@ -71,7 +72,7 @@ body {
 }
 
 .movie-poster-container {
-  width: 20%;
+  width: 300px;
 }
 
 .movie-poster {
@@ -82,7 +83,7 @@ body {
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
-  width: 40%;
+  width: 50%;
   padding: 0 40px;
 }
 
@@ -245,7 +246,7 @@ circle {
   background-image: url();
   background-repeat: no-repeat;
   background-size: cover;
-  background-position: initial;
+  background-position: center;
 }
 
 .header-container {
@@ -332,8 +333,8 @@ circle {
 }
 
 .hero-info__title {
-  font-size: 10rem;
-  max-width: 50vw;
+  font-size: 8rem;
+  max-width: 920px;
   font-weight: 900;
 }
 
@@ -343,7 +344,7 @@ circle {
 
 .hero-info__synopsis {
   font-size: 1.8rem;
-  max-width: 35vw;
+  max-width: 520px;
 }
 
 .hero-info__movie-btn {
@@ -600,4 +601,138 @@ footer {
 
 .invisible {
   visibility: hidden;
+}
+
+@media (min-width: 1281px) and (max-width: 1440px) {
+  .header-title {
+    font-size: 4.8rem;
+  }
+  .profile-avatar-container {
+    width: 47px;
+    height: 47px;
+  }
+
+  .search-icon-container {
+    width: 26px;
+    height: 26px;
+  }
+
+  .movie-container {
+    width: 23%;
+  }
+}
+
+@media (min-width: 1025px) and (max-width: 1280px) {
+  .header-title {
+    font-size: 4.4rem;
+  }
+  .profile-avatar-container {
+    width: 43px;
+    height: 43px;
+  }
+
+  .search-icon-container {
+    width: 22px;
+    height: 22px;
+  }
+
+  .movie-container {
+    width: 31.5%;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .header-title {
+    font-size: 4.4rem;
+  }
+  .profile-avatar-container {
+    width: 43px;
+    height: 43px;
+  }
+
+  .search-icon-container {
+    width: 22px;
+    height: 22px;
+  }
+  .movie-container {
+    width: 48.5%;
+  }
+}
+
+@media (min-width: 601px) and (max-width: 768px) {
+  .header-title {
+    font-size: 4.4rem;
+  }
+  .profile-avatar-container {
+    width: 43px;
+    height: 43px;
+  }
+
+  .search-icon-container {
+    width: 22px;
+    height: 22px;
+  }
+  .hero-info-container {
+    height: 48vh;
+  }
+  .hero-info__title {
+    font-size: 6rem;
+  }
+  .hero-info__synopsis {
+    font-size: 1.6rem;
+  }
+  .movie-container {
+    width: 48.5%;
+  }
+}
+
+@media (min-width: 481px) and (max-width: 600px) {
+  .header-title {
+    font-size: 4.4rem;
+  }
+  .hero-info-container {
+    height: 48vh;
+  }
+  .profile-avatar-container {
+    width: 43px;
+    height: 43px;
+  }
+
+  .search-icon-container {
+    width: 22px;
+    height: 22px;
+  }
+  .hero-info__title {
+    font-size: 5rem;
+  }
+  .hero-info__synopsis {
+    font-size: 1.5rem;
+  }
+  .movie-container {
+    width: 100%;
+  }
+}
+
+@media (min-width: 320px) and (max-width: 480px) {
+  .header-title {
+    font-size: 4.4rem;
+  }
+  .profile-avatar-container {
+    width: 43px;
+    height: 43px;
+  }
+
+  .search-icon-container {
+    width: 22px;
+    height: 22px;
+  }
+  .movie-container {
+    width: 100%;
+  }
+  .hero-info__title {
+    font-size: 5rem;
+  }
+  .hero-info__synopsis {
+    font-size: 1.5rem;
+  }
 }

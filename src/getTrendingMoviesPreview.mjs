@@ -1,8 +1,9 @@
-import { openMovieDetailsWindow } from './openMovieDetailsWindow.mjs';
+import { api } from "./constants.mjs";
+import { openMovieDetailsWindow } from "./openMovieDetailsWindow.mjs";
 
 export async function getTrendingMoviesPreview () {
-  const response = await fetch(`https://api.themoviedb.org/3/trending/movie/day?api_key=bbda25d057b9c8c6bbf7f6966d3f9f1b&language=es-MX`);
-  const data = await response.json();
+
+  const { data } = await api(`/trending/movie/week`);
   
   const movies = data.results;
   const moviesSorted = movies.sort((a, b) => b.popularity - a.popularity);
@@ -39,6 +40,7 @@ export async function getTrendingMoviesPreview () {
   heroDetailsBtn.setAttribute('id', moviesSorted[0].id);
   heroDetailsBtn.addEventListener('click', (e) => {
     const movieId = e.target.id;
+    console.log(movieId);
     openMovieDetailsWindow(movieId);
   })
   
@@ -107,6 +109,7 @@ export async function getTrendingMoviesPreview () {
     });
     moreDetailsBtn.addEventListener('click', (e) => {
       const movieId = e.target.id;
+      console.log(movieId);
       openMovieDetailsWindow(movieId);
     });
   });
