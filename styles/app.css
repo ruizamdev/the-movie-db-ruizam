@@ -43,6 +43,7 @@ body {
     var(--primary-dark-color)
   );
   z-index: 2;
+  transition: all 500ms;
 }
 
 .movie-details-window__background {
@@ -194,7 +195,8 @@ body {
     #000000,
     var(--primary-dark-color)
   );
-  z-index: 4;
+  z-index: 3;
+  transition: all 500ms;
 }
 
 .loader-animation svg {
@@ -205,7 +207,7 @@ body {
 
 circle {
   fill: none;
-  stroke: hsl(214, 97%, 59%);
+  stroke: var(--secondary-light-color);
   stroke-width: 2;
   stroke-dasharray: 1, 200;
   stroke-dashoffset: 0;

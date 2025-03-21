@@ -1,7 +1,21 @@
 import { navbarScrollTransform } from './navbarScrollTransform.mjs';
 import { searchBarInteractive } from './searchBarInteractive.mjs';
 import { getTrendingMoviesPreview } from './getTrendingMoviesPreview.mjs';
-import { header, headerLogo, movieDetailsWindow } from './constants.mjs';
+import { header, headerLogo, movieDetailsWindow, movieDetailsWindowLoader } from './constants.mjs';
+
+function delay(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+async function loading() {
+  movieDetailsWindow.classList.remove('inactive');
+  movieDetailsWindowLoader.classList.remove('inactive');
+  await delay(1500);
+  movieDetailsWindow.classList.add('inactive');
+  movieDetailsWindowLoader.classList.add('inactive');
+}
+// debugger;
+loading();
 
 headerLogo.addEventListener('click', () => {
   window.location.hash = '';
