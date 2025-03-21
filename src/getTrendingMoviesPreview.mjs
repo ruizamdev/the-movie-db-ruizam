@@ -3,7 +3,7 @@ import { openMovieDetailsWindow } from "./openMovieDetailsWindow.mjs";
 
 export async function getTrendingMoviesPreview () {
 
-  const { data } = await api(`/trending/movie/week`);
+  const { data } = await api(`/trending/movie/day`);
   
   const movies = data.results;
   const moviesSorted = movies.sort((a, b) => b.popularity - a.popularity);

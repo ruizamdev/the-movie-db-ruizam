@@ -3,10 +3,10 @@ export function searchBarInteractive () {
   const searchIconPath = searchIconContainer.querySelector('#search-icon .path');
   const searchFormInput = document.querySelector('.searchForm-input');
   searchIconContainer.addEventListener('mouseenter', () => {
-    searchIconPath.setAttribute('style', 'fill:#e2e2e2;');
+    searchIconPath.setAttribute('style', 'fill:#cb8dec;');
   });
   searchIconContainer.addEventListener('mouseleave', () => {
-    searchIconPath.setAttribute('style', 'fill:#77767c;')
+    searchIconPath.setAttribute('style', 'fill:#9a99a0;')
   });
   searchIconContainer.addEventListener('click', () => {
     searchFormInput.classList.remove('inactive');
