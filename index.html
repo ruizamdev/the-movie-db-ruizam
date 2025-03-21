@@ -15,7 +15,6 @@
 <body>
   
   <div class="movie-details-window inactive">
-
     <div class="loader-animation inactive">
       <svg viewBox="25 25 50 50">
         <circle r="20" cy="50" cx="50"></circle>
@@ -29,25 +28,33 @@
         </figure>
         <div class="movie-details-div">
           <h2 class="movie-title"></h2>
+          <div class="divider"></div>
           <h3 class="movie-originalTitle"></h3>
-          <span class="movie-releaseDate"></span>
-          <div class="movie-genres">
+          <div class="date-genres-div">
+            <span class="movie-releaseDate"></span>
+            <div class="movie-genres"></div>
+            <span class="movie-runtime"></span>
+          </div>
 
-          </div>
-          <span class="movie-runtime"></span>
-          <div class="movie-rate-container">
-            <span class="movie-rate"></span>
-          </div>
-          <div class="movie-votes-container">
-            <span class="movie-votes"></span>
-          </div>
-          <div class="movie-popularity-container">
-            <span class="movie-popularity"></span>
+          <div class="movie-rates">
+            <div class="movie-rate-container">
+              <span class="movie-rate"></span>
+              <span>Calificación de Usuarios</span>
+            </div>
+            <div class="movie-votes-container">
+              <span class="movie-votes"></span>
+            </div>
+            <div class="movie-popularity-container">
+              <span class="movie-popularity"></span>
+            </div>
           </div>
           <p><i class="movie-tagline"></i></p>
           <p class="movie-overview"></p>
         </div>
       </article>
+      <span class="close-window">
+        <svg width="50px" height="50px" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg"><path fill="#e2e2e2" d="M195.2 195.2a64 64 0 0 1 90.496 0L512 421.504 738.304 195.2a64 64 0 0 1 90.496 90.496L602.496 512 828.8 738.304a64 64 0 0 1-90.496 90.496L512 602.496 285.696 828.8a64 64 0 0 1-90.496-90.496L421.504 512 195.2 285.696a64 64 0 0 1 0-90.496z"/></svg>
+      </span>
     </section>
   </div>
 
@@ -56,7 +63,6 @@
       <span class="header-arrow inactive">&lt;</span>
       <div class="header-logo">
         <h1 class="header-title">mex</h1>
-        <h2 class="header-subtitle">movie db</h2>
       </div>
       <h1 class="header-title header-title--categoryView inactive">Acción</h1>
       <div class="user-assets">
