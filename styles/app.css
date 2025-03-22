@@ -343,7 +343,7 @@ circle {
   display: flex;
   flex-direction: column;
   gap: 6px;
-  height: 45vh;
+  height: 50vh;
   padding: 0 50px;
   background: linear-gradient(
     to top,
@@ -374,9 +374,9 @@ circle {
   height: 42px;
   border-radius: 5px;
   border: none;
-  color: var(--white);
+  color: var(--primary-dark-color);
   font-size: 1.9rem;
-  background-color: rgb(from var(--primary-dark-color) r g b / 0.85);
+  background-color: rgb(from var(--secondary-light-color) r g b / 0.85);
   cursor: pointer;
   box-shadow: 0px 10px 20px -18px rgb(0,0,0,0.35);
 }
@@ -607,7 +607,8 @@ footer {
 
   .hero-info__movie-btn:hover {
     color: var(--primary-dark-color);
-    background-color: rgb(from var(--secondary-light-color) r g b / 0.85);
+    background-color: hsl(from var(--secondary-light-color) h s calc(l + 7));
+    /* background-color: rgb(from var(--secondary-light-color) r g b / 0.85); */
   }
   .hero-info__movie-btn:active {
     color: var(--primary-light-color);
