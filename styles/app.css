@@ -630,6 +630,7 @@ footer {
   }
   .movie-container:hover {
     outline: 2px solid var(--secondary-light-color);
+    outline-offset: 10px;
   }
   
   .movie-container:hover .movie-img {
