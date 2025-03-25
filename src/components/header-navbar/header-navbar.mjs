@@ -63,7 +63,7 @@ export class HeaderNavbar extends HTMLElement {
         <img src="./src/components/header-navbar/avatar.png" alt="profile avatar" class="profile-avatar">
       </figure>
 
-      <div class="user-menu  inactive">
+      <div id="user-menu" class="user-menu inactive">
         <div class="menu-profile-container">
           <figure id="menu-profile-avatar" class="profile-avatar-container">
             <img src="./src/components/header-navbar/avatar.png" alt="profile avatar" class="profile-avatar">
@@ -386,6 +386,9 @@ export class HeaderNavbar extends HTMLElement {
     .profile-avatar-container:active img {
       transform: scale(1.20);
     }
+    .profile-avatar-container:hover .user-menu {
+      display: block;
+    }
 }
     `;
   };
@@ -460,28 +463,24 @@ export class HeaderNavbar extends HTMLElement {
   };
 
   hovering(){
+    console.group();
     const header = document.querySelector('header-navbar');
     console.log(header);
+    const profileAvatar = header.shadowRoot.getElementById('profile-avatar');
+    console.log(profileAvatar);
     const userMenu = header.shadowRoot.querySelector('.user-menu');
-    console.log(userMenu)
-    const userAvatar = header.shadowRoot.querySelector('.profile-avatar-container');
-    console.log(userAvatar)
-    userAvatar.addEventListener('mouseenter', () => {
-      if (window.scrollY >= 50) {
-        userMenu.setAttribute('style', 'top: 90px; right: 50px;')
-        userMenu.classList.remove('inactive');
-      } else if (window.scrollY <= 50) {
-        userMenu.setAttribute('style', 'top: 120px; right: 50px;')
-        userMenu.classList.remove('inactive');
-      } else {
-        console.warn('no hover action')
-      }
-    })
-    userAvatar.addEventListener('mouseleave', () => {
-      setTimeout(() => {
-        userMenu.classList.add('inactive');
-      }, 1000)
-    })
+    console.log(userMenu);
+    profileAvatar.addEventListener('click', () => {
+      userMenu.classList.toggle('inactive')
+    });
+    document.body.addEventListener('click', (e) => {
+      if(!e.target.matches('.user-menu')){
+        if(!userMenu.classList.contains('inactive')){
+          userMenu.classList.toggle('inactive');
+        };
+      };
+    });
+    console.groupEnd();
   }
 
   connectedCallback(){
