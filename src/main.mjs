@@ -1,11 +1,16 @@
-import { navbarScrollTransform } from './navbarScrollTransform.mjs';
-import { searchBarInteractive } from './searchBarInteractive.mjs';
-import { getTrendingMoviesPreview } from './getTrendingMoviesPreview.mjs';
-import { header, headerLogo, movieDetailsWindow, movieDetailsWindowLoader } from './constants.mjs';
+/* Import components */
+import { TheHero } from "./components/hero/hero.mjs";
+import { HeaderNavbar } from "./components/header-navbar/header-navbar.mjs";
+import { getTrendingMovies } from "./goHome.mjs";
 
-function delay(ms) {
+/* Define components */
+customElements.define('the-hero', TheHero);
+customElements.define('header-navbar', HeaderNavbar);
+
+
+/* function delay(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
-}
+};
 
 async function loading() {
   movieDetailsWindow.classList.remove('inactive');
@@ -13,20 +18,20 @@ async function loading() {
   await delay(1500);
   movieDetailsWindow.classList.add('inactive');
   movieDetailsWindowLoader.classList.add('inactive');
-}
-// debugger;
-loading();
-
-headerLogo.addEventListener('click', () => {
-  window.location.hash = '';
-  movieDetailsWindow.classList.add('inactive');
-  document.body.style.position = 'static';
-  header.style = '';
-});
-
-navbarScrollTransform();
-searchBarInteractive();
-
-if (window.location.hash.startsWith('') || window.location.hash.startsWith('#')) {
-  getTrendingMoviesPreview();
 };
+
+loading(); */
+
+if(location.hash.startsWith('#peliculas')) {
+
+} else if (location.hash.startsWith('#series')) {
+
+} else if (location.hash.startsWith('#personas')) {
+
+} else if (location.hash.startsWith('#Buscar')) {
+
+} else if (location.hash.startsWith('#favoritos')){
+
+} else {
+  getTrendingMovies();
+}
