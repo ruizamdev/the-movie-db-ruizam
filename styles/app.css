@@ -27,7 +27,7 @@ body {
   color: var(--white);
   font-family: var(--font);
   font-size: 1.6rem;
-} 
+}
 
 .movie-details-window {
   position: absolute;
@@ -360,6 +360,8 @@ circle {
 
 .movie-yearRate {
   margin: 5px 0;
+  display: flex;
+  gap: 0.75%;
 }
 
 .hero-info__synopsis {
@@ -378,11 +380,6 @@ circle {
   background-color: rgb(from var(--secondary-light-color) r g b / 0.85);
   cursor: pointer;
   box-shadow: 0px 10px 20px -18px rgb(0,0,0,0.35);
-}
-
-.movie-yearRate {
-  display: flex;
-  gap: 0.75%;
 }
 
 .user-assets {
