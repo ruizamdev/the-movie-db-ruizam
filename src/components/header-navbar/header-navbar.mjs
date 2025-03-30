@@ -25,9 +25,30 @@ export class HeaderNavbar extends HTMLElement {
     
       <nav class="navbar-container">
         <ul class="navbar">
-          <li class="navbar-item-movies navbar-item"><span>Peliculas</span></li>
-          <li class="navbar-item-series navbar-item"><span>Series</span></li>
-          <li class="navbar-item-people navbar-item"><span>Personas</span></li>
+          <li class="navbar-item-movies navbar-item">
+            <span>Peliculas</span>
+          </li>
+          <ul class="navbar-item-movies-submenu navbar-submenu inactive">
+              <li>Tendencias</li>
+              <li>Mejores calificadas</li>
+              <li>Por venir</li>
+          </ul>
+          <li class="navbar-item-series navbar-item">
+            <span>Series</span>
+          </li>
+          <ul class="navbar-item-series-submenu navbar-submenu inactive">
+              <li>Popular</li>
+              <li>En TV</li>
+              <li>Mejor calificadas</li>
+            </ul>
+          <li class="navbar-item-people navbar-item">
+            <span>Personas</span>
+          </li>
+          <ul class="navbar-item-people-submenu navbar-submenu inactive">
+              <li>Tendencias</li>
+              <li>Mejores calificadas</li>
+              <li>Por venir</li>
+          </ul>
         </ul>
       </nav>
 
@@ -63,20 +84,20 @@ export class HeaderNavbar extends HTMLElement {
         <img src="./src/components/header-navbar/avatar.png" alt="profile avatar" class="profile-avatar">
       </figure>
 
-      <div id="user-menu" class="user-menu inactive">
+      <div id="user-menu" class="user-menu vanished-menu">
         <div class="menu-profile-container">
           <figure id="menu-profile-avatar" class="profile-avatar-container">
             <img src="./src/components/header-navbar/avatar.png" alt="profile avatar" class="profile-avatar">
           </figure>
-          <p class="user-name">Armando Ruiz</p>
+          <p class="user-name"><span class="user-name-text">Armando Ruiz</span></p>
         </div>
         <ul>
-          <li class="menu-options">Administrar perfil</li>
-          <li class="menu-options">Ajustes</li>
-          <li class="menu-options">Ayuda</li>
+          <li class="menu-options"><span class="option">Administrar perfil</span></li>
+          <li class="menu-options"><span class="option">Ajustes</span></li>
+          <li class="menu-options"><span class="option">Ayuda</span></li>
         </ul>
         <div class="separator"></div>
-        <p class="logout">Cerrar sesión</p>
+        <p class="logout"><span class="logout-text">Cerrar sesión</span></p>
       </div>
       
     </div>
@@ -170,6 +191,18 @@ export class HeaderNavbar extends HTMLElement {
     transition: transform 300ms, color 300ms;
 }
 
+.navbar-submenu {
+    position: absolute;
+    top: 120px;
+    left: 450px;
+    background: grey;
+    padding: 30px;
+}
+
+.navbar-submenu li {
+    list-style: none;
+}
+
 .user-assets {
     display: flex;
     gap: 20px;
@@ -238,10 +271,38 @@ export class HeaderNavbar extends HTMLElement {
 
 .user-menu {
     position: absolute;
+    top: 0;
+    right: 30px;
     background-color: var(--secondary-dark-color);
     border-radius:0 0 5px 5px;
+    z-index: 0;
+    transition: display 300ms;
+    opacity: 0;
+    display: none;
+    animation: fadeInOut 300ms ease-in-out;
 }
 
+.vanished-menu {
+    opacity: 1;
+    display: block;
+}
+
+@keyframes fadeInOut {
+    0% {
+        opacity: 0;
+        display: none;
+    }
+
+    50% {
+        opacity: 0.5;
+        display: block;
+    }
+
+    100% {
+        opacity: 1;
+        display: block;
+    }
+}
 .user-menu li {
     list-style: none;
     font-size: 2rem;
@@ -260,6 +321,12 @@ export class HeaderNavbar extends HTMLElement {
 
 .user-name {
     font-size: 2rem;
+    cursor: pointer;
+}
+
+.user-name-text {
+    display: inline-block;
+    transition: transform 300ms, color 300ms;
 }
 
 .separator {
@@ -273,12 +340,24 @@ export class HeaderNavbar extends HTMLElement {
     font-size: 2rem;
     padding-block: 10px 10px;
     padding-inline: 25px 50px;
+    cursor: pointer;
+}
+
+.option {
+    display: inline-block;
+    Transition: transform 300ms, color 300ms;
 }
 
 .logout {
+    cursor: pointer;
     font-size: 2rem;
     padding-block: 10px 10px;
     padding-inline: 25px 50px;
+}
+
+.logout-text {
+    display: inline-block;
+    transition: transform 300ms, color 300ms;
 }
 
 @media (min-width: 1441px){
@@ -338,7 +417,6 @@ export class HeaderNavbar extends HTMLElement {
     display: none;
   }
 }
-
 @media (hover: hover) {
     .header-logo:hover .header-title {
       transform: scale(1.15);
@@ -388,6 +466,18 @@ export class HeaderNavbar extends HTMLElement {
     }
     .profile-avatar-container:hover .user-menu {
       display: block;
+    }
+    .user-name:hover .user-name-text {
+      transform: scale(1.1);
+      color: var(--secondary-light-color);
+    }
+    .menu-options:hover .option {
+      transform: scale(1.1);
+      color: var(--secondary-light-color);
+    }
+    .logout:hover .logout-text {
+      transform: scale(1.1);
+      color: var(--secondary-light-color);
     }
 }
     `;
@@ -460,28 +550,25 @@ export class HeaderNavbar extends HTMLElement {
         header.setAttribute('style', 'height: 120px;')
       };
     });
+
   };
 
   hovering(){
     console.group();
     const header = document.querySelector('header-navbar');
-    console.log(header);
     const profileAvatar = header.shadowRoot.getElementById('profile-avatar');
-    console.log(profileAvatar);
     const userMenu = header.shadowRoot.querySelector('.user-menu');
-    console.log(userMenu);
-    profileAvatar.addEventListener('click', () => {
-      userMenu.classList.toggle('inactive')
+    const moviesLink = header.shadowRoot.querySelector('.navbar-item-movies span');
+    const moviesSubmenu = header.shadowRoot.querySelector('.navbar-item-movies-submenu');
+    // Avatar hover menu
+    profileAvatar.addEventListener('mouseenter', () => {
+      userMenu.classList.toggle('vanished-menu');
     });
-    document.body.addEventListener('click', (e) => {
-      if(!e.target.matches('.user-menu')){
-        if(!userMenu.classList.contains('inactive')){
-          userMenu.classList.toggle('inactive');
-        };
-      };
+    userMenu.addEventListener('mouseleave', () => {
+      userMenu.classList.toggle('vanished-menu');
     });
     console.groupEnd();
-  }
+  };
 
   connectedCallback(){
     this.render();
