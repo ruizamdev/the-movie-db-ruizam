@@ -13,7 +13,7 @@ export class TheHero extends HTMLElement {
   }
   getTemplate(){
     const theHero = document.createElement('template');
-    theHero.innerHTML = `
+    theHero.innerHTML = /*html*/`
       <slot name="the-header"></slot>
       <div id="hero-info" class="hero-info-container">
       <h2 class="hero-info__title"></h2>
@@ -31,7 +31,7 @@ export class TheHero extends HTMLElement {
     return theHero;
   }
   getStyles(){
-    return `
+    return /*css*/`
       <style>
         :host {
           --primary-dark-color: #171934;
