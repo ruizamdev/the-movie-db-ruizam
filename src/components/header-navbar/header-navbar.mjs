@@ -18,7 +18,7 @@ export class HeaderNavbar extends HTMLElement {
 
   getTemplate(){
     const headerNavbar = document.createElement('template');
-    headerNavbar.innerHTML = `
+    headerNavbar.innerHTML = /* html */`
       <div class="header-logo">
         <h1 class="header-title"></h1>
       </div>

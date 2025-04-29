@@ -1,3 +1,4 @@
+// debugger;
 /* Import components */
 import { TheHero } from "./components/hero/hero.mjs";
 import { HeaderNavbar } from "./components/header-navbar/header-navbar.mjs";
