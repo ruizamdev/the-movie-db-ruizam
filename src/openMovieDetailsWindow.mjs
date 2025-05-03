@@ -1,27 +1,7 @@
+// openMovieDetailsWindow.mjs
+
 // Import API helper, DOM elements and constants from constants.mjs
-import { 
-  api,                             // función para llamar a la API de TMDB
-  movieDetailsWindow,              // contenedor de la ventana de detalles
-  movieDetailsWindowLoader,        // indicador de carga en la ventana de detalles
-  movieDetailsContainer,           // contenedor interno de detalles (no usado aquí)
-  movieDetailsDiv,                 // div principal donde se agregan elementos dinámicos
-  moviePoster,                     // elemento img para el poster de la película
-  movieTitle,                      // elemento h1 o similar para el título
-  movieOriginalTitle,              // elemento para el título original
-  movieReleaseDate,                // elemento para la fecha de estreno
-  movieGenresList,                 // elemento ul o similar para la lista de géneros
-  movieRuntime,                    // elemento para la duración en tiempo
-  movieRate,                       // elemento para la calificación promedio
-  movieVotes,                      // elemento para el conteo de votos
-  moviePopularity,                 // elemento para la popularidad
-  movieTagline,                    // elemento para la frase promocional (tagline)
-  movieOverview,                   // elemento para la sinopsis
-  movieDetailsWindowBackground,    // fondo de la ventana de detalles
-  header,                          // elemento header de la página
-  backdropImagesURL,               // URL base para imágenes de fondo
-  posterImagesURL,                 // URL base para posters
-  closeWindow,                     // botón para cerrar la ventana de detalles
-} from "./constants.mjs";
+import { api, getDOMConstants } from "./constants.mjs";
 
 
 // Función principal que abre y llena la ventana de detalles de una película
@@ -30,7 +10,7 @@ export async function openMovieDetailsWindow(movieId) {
   window.location.hash = `#movieID=${movieId}`;
   
   // 2. Muestra la ventana de detalles y el loader
-  movieDetailsWindow.classList.remove("inactive");
+  movieInfoCard.classList.remove("inactive");
   movieDetailsWindowLoader.classList.remove("inactive");
   movieDetailsWindowBackground.classList.remove("inactive");
   
@@ -116,9 +96,9 @@ export async function openMovieDetailsWindow(movieId) {
   // 15. Configura el evento de cerrar ventana para restaurar estado original
   closeWindow.addEventListener("click", () => {
     window.location.hash = "";                     // limpia el hash de la URL
-    movieDetailsWindow.classList.add("inactive");  // oculta la ventana
+    movieInfoCard.classList.add("inactive");  // oculta la ventana
     document.body.style.position = "static";       // habilita scroll
-    header.style = '';                             // restaura estilo de header
+    headerLogo.style = '';                             // restaura estilo de header
   });
 
   // Después de terminar toda la manipulación del DOM

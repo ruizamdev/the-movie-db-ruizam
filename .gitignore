@@ -145,3 +145,6 @@ dist
 
 # Secrets.js (API KEY)
 src/secrets.js
+
+# snippet para web components
+src/components/web-components/snippet.js
