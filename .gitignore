@@ -147,4 +147,4 @@ dist
 src/secrets.js
 
 # snippet para web components
-src/components/web-components/snippet.js
+src/components/web-components-base-snippet.js
