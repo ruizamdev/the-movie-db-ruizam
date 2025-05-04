@@ -145,5 +145,6 @@ dist
 
 # Secrets.js (API KEY)
 src/secrets.js
+
 # ignoring web component snippet
 web-component-base-snippet.js

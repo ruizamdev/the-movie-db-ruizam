@@ -4,122 +4,79 @@ export class MovieInfoCard extends HTMLElement {
   constructor() {
     super();
     this.attachShadow({ mode: 'open' });
-    this.movieData = null;
-    this.posterImagesURL = 'https://image.tmdb.org/t/p/w300';
-    this.backdropImagesURL = 'https://image.tmdb.org/t/p/w780';
+    // Variables internas o bindings van aquí
   }
 
   static get observedAttributes() {
-    return ['movie-id'];
+    return []; // si necesitas escuchar atributos
   }
 
   attributeChangedCallback(name, oldVal, newVal) {
-    if (name === 'movie-id' && newVal && newVal !== oldVal) {
-      this.clear();
-      this.fetchMovieData(newVal);
-    }
+    if (oldVal !== newVal) this.render();
   }
 
   connectedCallback() {
     this.render();
-    this.addEventListeners();
+    // Listeners, inits, etc.
   }
 
-  async fetchMovieData(movieId) {
-    this.showLoader(true);
-    try {
-      const res = await fetch(`https://api.themoviedb.org/3/movie/${movieId}?api_key=bbda25d057b9c8c6bbf7f6966d3f9f1b&language=es-MX`);
-      this.movieData = await res.json();
-      this.render();
-    } catch (error) {
-      console.error('Error al cargar datos de película:', error);
-    } finally {
-      this.showLoader(false);
-      this.classList.remove('inactive');
-    }
+  disconnectedCallback() {
+    // Limpieza de listeners, intervals, observers, etc.
   }
 
-  showLoader(state) {
-    const loader = this.shadowRoot?.querySelector('.loader-animation');
-    if (loader) {
-      loader.classList.toggle('inactive', !state);
-    }
-  }
-
-  clear() {
-    this.movieData = null;
-    const window = this.shadowRoot?.querySelector('.movie-details-window');
-    if (window) window.innerHTML = '';
-  }
-
-  close() {
-    this.classList.add('inactive');
-    this.clear();
-  }
-
-  addEventListeners() {
-    this.shadowRoot.addEventListener('click', (e) => {
-      if (e.target.closest('.close-window')) {
-        this.close();
-      }
-    });
-  }
-
-  render() {
-    if (!this.shadowRoot) return;
-
-    const data = this.movieData;
-
-    this.shadowRoot.innerHTML = '';
+  getTemplate() {
     const template = document.createElement('template');
-    template.innerHTML = `
-      <div class="movie-details-window inactive">
-        <div class="loader-animation inactive">
-          <svg viewBox="25 25 50 50">
-            <circle r="20" cy="50" cx="50"></circle>
-          </svg>
-        </div>
+    template.innerHTML = /* html */`
+      <div class="movie-details-window">
+    <div class="loader-animation inactive">
+      <svg viewBox="25 25 50 50">
+        <circle r="20" cy="50" cx="50"></circle>
+      </svg>
+    </div>
 
-        <section class="movie-details-window__background" style="background-image: url('${this.backdropImagesURL}${data?.backdrop_path || ''}');">
-          <article class="movie-details">
-            <span class="close-window">
-              <svg width="50px" height="50px" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg"><path fill="#e2e2e2" d="M195.2 195.2a64 64 0 0 1 90.496 0L512 421.504 738.304 195.2a64 64 0 0 1 90.496 90.496L602.496 512 828.8 738.304a64 64 0 0 1-90.496 90.496L512 602.496 285.696 828.8a64 64 0 0 1-90.496-90.496L421.504 512 195.2 285.696a64 64 0 0 1 0-90.496z"/></svg>
-            </span>
-            <figure class="movie-poster-container">
-              <img class="movie-poster" src="${this.posterImagesURL}${data?.poster_path || ''}" alt="Poster" />
-            </figure>
-            <div class="movie-details-div">
-              <h2 class="movie-title">${data?.title || ''}</h2>
-              <div class="divider"></div>
-              <h3 class="movie-originalTitle">${data?.original_title || ''}</h3>
-              <div class="date-genres-div">
-                <span class="movie-releaseDate">${this.formatDate(data?.release_date)}</span>
-                <div class="movie-genres">${(data?.genres || []).map(g => `<span>${g.name}</span>`).join(', ')}</div>
-                <span class="movie-runtime">${data?.runtime ? data.runtime + ' min' : ''}</span>
-              </div>
-              <div class="movie-rates">
-                <div class="movie-rate-container"><span class="movie-rate">${data?.vote_average || ''}</span><span>Calificación</span></div>
-                <div class="movie-rate-container"><span class="movie-votes">${data?.vote_count || ''}</span><span>Votos</span></div>
-                <div class="movie-rate-container"><span class="movie-popularity">${data?.popularity || ''}</span><span>Popularidad</span></div>
-              </div>
-              <p><i class="movie-tagline">${data?.tagline || ''}</i></p>
-              <p class="movie-overview">${data?.overview || ''}</p>
+    <section class="movie-details-window__background">
+      <article class="movie-details">
+        <span class="close-window">
+          <svg width="50px" height="50px" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg"><path fill="#e2e2e2" d="M195.2 195.2a64 64 0 0 1 90.496 0L512 421.504 738.304 195.2a64 64 0 0 1 90.496 90.496L602.496 512 828.8 738.304a64 64 0 0 1-90.496 90.496L512 602.496 285.696 828.8a64 64 0 0 1-90.496-90.496L421.504 512 195.2 285.696a64 64 0 0 1 0-90.496z"/></svg>
+        </span>
+        <figure class="movie-poster-container">
+          <img class="movie-poster">
+        </figure>
+        <div class="movie-details-div">
+          <h2 class="movie-title"></h2>
+          <div class="divider"></div>
+          <h3 class="movie-originalTitle"></h3>
+          <div class="date-genres-div">
+            <span class="movie-releaseDate"></span>
+            <div class="movie-genres"></div>
+            <span class="movie-runtime"></span>
+          </div>
+
+          <div class="movie-rates">
+            <div class="movie-rate-container movie-rate-container">
+              <span class="movie-rate movie-rate"></span>
+              <span>Calificación</span>
             </div>
-          </article>
-        </section>
-      </div>
-      <style>${this.getStyles()}</style>
+            <div class="movie-rate-container movie-votes-container">
+              <span class="movie-votes"></span>
+              <span>Votos</span>
+            </div>
+            <div class="movie-rate-container movie-popularity-container">
+              <span class="movie-popularity"></span>
+              <span>Popularidad</span>
+            </div>
+          </div>
+          <p><i class="movie-tagline"></i></p>
+          <p class="movie-overview"></p>
+        </div>
+      </article>
+    </section>
+  </div>
+  <style>
+    ${this.getStyles()}
+  </style>
     `;
-    this.shadowRoot.appendChild(template.content.cloneNode(true));
-  }
-
-  formatDate(dateStr) {
-    if (!dateStr) return '';
-    return new Date(dateStr).toLocaleDateString('es-MX', {
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric',
-    });
+    return template;
   }
 
   getStyles() {
@@ -354,5 +311,10 @@ export class MovieInfoCard extends HTMLElement {
         transition: opacity 0.3s ease;
       }
     `;
+  }
+
+  render() {
+    this.shadowRoot.innerHTML = '';
+    this.shadowRoot.appendChild(this.getTemplate().content.cloneNode(true));
   }
 }

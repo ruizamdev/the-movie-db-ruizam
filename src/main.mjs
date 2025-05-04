@@ -2,11 +2,13 @@
 /* Import components */
 import { TheHero } from "./components/hero/hero.mjs";
 import { HeaderNavbar } from "./components/header-navbar/header-navbar.mjs";
+import { MovieInfoCard } from "./components/movie-info-card/movieInfoCard.mjs";
 import { getTrendingMovies } from "./goHome.mjs";
 
 /* Define components */
 customElements.define('the-hero', TheHero);
 customElements.define('header-navbar', HeaderNavbar);
+customElements.define('movie-info-card', MovieInfoCard);
 
 
 /* function delay(ms) {

@@ -1,5 +1,4 @@
 import { api } from "./constants.mjs";
-import { openMovieDetailsWindow } from "./openMovieDetailsWindow.mjs";
 
 export async function getTrendingMoviesPreview () {
 
@@ -41,7 +40,7 @@ export async function getTrendingMoviesPreview () {
   heroDetailsBtn.addEventListener('click', (e) => {
     const movieId = e.target.id;
     console.log(movieId);
-    openMovieDetailsWindow(movieId);
+    document.querySelector('movie-info-card').setAttribute('movie-id', movieId);
   })
   
 
@@ -110,7 +109,7 @@ export async function getTrendingMoviesPreview () {
     moreDetailsBtn.addEventListener('click', (e) => {
       const movieId = e.target.id;
       console.log(movieId);
-      openMovieDetailsWindow(movieId);
+      console.log("Aquí sigue la logica de abrir el window component")
     });
   });
 };

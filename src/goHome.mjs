@@ -1,6 +1,5 @@
 /* Imports */
 import { api } from "./constants.mjs";
-import { openMovieDetailsWindow } from "./openMovieDetailsWindow.mjs";
 
 export async function getTrendingMovies() {
   const { data } = await api(`/trending/movie/day`);
@@ -41,7 +40,6 @@ export async function getTrendingMovies() {
   heroDetailsBtn.addEventListener('click', (e) => {
     const movieId = e.target.id;
     console.log(movieId);
-    openMovieDetailsWindow(movieId);
   })
   
 
