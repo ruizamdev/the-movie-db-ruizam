@@ -1,12 +1,14 @@
 // movieInfoCard.mjs
 
+import { api } from '../../constants.mjs'
 export class MovieInfoCard extends HTMLElement {
   constructor() {
     super();
     this.attachShadow({ mode: 'open' });
-    this.movieData = null;
     this.posterImagesURL = 'https://image.tmdb.org/t/p/w300';
     this.backdropImagesURL = 'https://image.tmdb.org/t/p/w780';
+    this.movieData = null;
+    this.externalListener = this.handleExternalTrigger.bind(this);
   }
 
   static get observedAttributes() {
@@ -23,13 +25,25 @@ export class MovieInfoCard extends HTMLElement {
   connectedCallback() {
     this.render();
     this.addEventListeners();
+    window.addEventListener('open-movie-info', this.externalListener);
+  }
+
+  disconnectedCallback() {
+    window.removeEventListener('open-movie-info', this.externalListener);
+  }
+
+  handleExternalTrigger(event){
+    const movieId = event.detail?.movieId;
+    if(movieId) {
+      this.setAttribute('movie-id', movieId)
+    }
   }
 
   async fetchMovieData(movieId) {
     this.showLoader(true);
     try {
-      const res = await fetch(`https://api.themoviedb.org/3/movie/${movieId}?api_key=bbda25d057b9c8c6bbf7f6966d3f9f1b&language=es-MX`);
-      this.movieData = await res.json();
+      const { data } = await api(`/movie/${movieId}`);
+      this.movieData = data;
       this.render();
     } catch (error) {
       console.error('Error al cargar datos de película:', error);

@@ -23,13 +23,14 @@ export class TheHero extends HTMLElement {
         <span class="hero-info__seasons"></span>
       </div>
       <p class="hero-info__synopsis"></p>
-      <button class="hero-info__movie-btn details-button">Ver detalles
+      <button class="hero-info__movie-btn details-button" onClick="">Ver detalles
       </button>
     </div>
     ${this.getStyles()}
     `;
     return theHero;
   }
+
   getStyles(){
     return /*css*/`
       <style>
@@ -110,10 +111,18 @@ export class TheHero extends HTMLElement {
       </style>
     `;
   }
+
+  getMovieDetails() {
+    window.dispatchEvent(new CustomEvent('open-movie-info', {
+      detail: { movieId: '12345' }
+    }));
+  }
+
   render(){
     this.shadowRoot.innerHTML = '';
     this.shadowRoot.appendChild(this.getTemplate().content.cloneNode(true));
   }
+
   connectedCallback(){
     this.render();
   }
