@@ -84,7 +84,7 @@ export class HeaderNavbar extends HTMLElement {
         <img src="./src/components/header-navbar/avatar.png" alt="profile avatar" class="profile-avatar">
       </figure>
 
-      <div id="user-menu" class="user-menu vanished-menu">
+      <div id="user-menu" class="user-menu vanished-menu inactive">
         <div class="menu-profile-container">
           <figure id="menu-profile-avatar" class="profile-avatar-container">
             <img src="./src/components/header-navbar/avatar.png" alt="profile avatar" class="profile-avatar">
@@ -558,20 +558,7 @@ export class HeaderNavbar extends HTMLElement {
   };
 
   hovering(){
-    console.group();
-    const header = document.querySelector('header-navbar');
-    const profileAvatar = header.shadowRoot.getElementById('profile-avatar');
-    const userMenu = header.shadowRoot.querySelector('.user-menu');
-    const moviesLink = header.shadowRoot.querySelector('.navbar-item-movies span');
-    const moviesSubmenu = header.shadowRoot.querySelector('.navbar-item-movies-submenu');
-    // Avatar hover menu
-    profileAvatar.addEventListener('mouseenter', () => {
-      userMenu.classList.toggle('vanished-menu');
-    });
-    userMenu.addEventListener('mouseleave', () => {
-      userMenu.classList.toggle('vanished-menu');
-    });
-    console.groupEnd();
+    
   };
 
   connectedCallback(){
