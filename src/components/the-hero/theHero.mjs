@@ -1,20 +1,24 @@
 export class TheHero extends HTMLElement {
+  
   constructor(){
     super();
     this.attachShadow({mode: 'open'});
   }
+
   static get ObservedAttribute() {
     return [];
   }
+
   attributeChangedCallback() {
     if (oldValue !== newValue) {
       this.render();
     }
   }
+
   getTemplate(){
     const theHero = document.createElement('template');
     theHero.innerHTML = /*html*/`
-      <slot name="the-header"></slot>
+      <slot name="header"></slot>
       <div id="hero-info" class="hero-info-container">
       <h2 class="hero-info__title"></h2>
       <div class="movie-yearRate">
@@ -23,24 +27,24 @@ export class TheHero extends HTMLElement {
         <span class="hero-info__seasons"></span>
       </div>
       <p class="hero-info__synopsis"></p>
-      <button class="hero-info__movie-btn details-button" onClick="">Ver detalles
-      </button>
+      <button class="hero-info__movie-btn details-button">Ver detalles</button>
     </div>
-    ${this.getStyles()}
+    <style>
+      ${this.getStyles()}
+    </style>
     `;
     return theHero;
   }
 
   getStyles(){
     return /*css*/`
-      <style>
         :host {
           --primary-dark-color: #171934;
-  --secondary-dark-color: #77767c;
-  --tertiary-light-color: #b8b7f8;
-  --secondary-light-color: #cb8dec;
-  --primary-light-color: #e8ddff;
-  --white: #e2e2e2;
+          --secondary-dark-color: #77767c;
+          --tertiary-light-color: #b8b7f8;
+          --secondary-light-color: #cb8dec;
+          --primary-light-color: #e8ddff;
+          --white: #e2e2e2;
           display: flex;
           flex-direction: column;
           justify-content: end;
@@ -108,14 +112,7 @@ export class TheHero extends HTMLElement {
             background-color: rgb(from var(--primary-dark-color) r g b / 0.65);
           }
         }
-      </style>
     `;
-  }
-
-  getMovieDetails() {
-    window.dispatchEvent(new CustomEvent('open-movie-info', {
-      detail: { movieId: '12345' }
-    }));
   }
 
   render(){
@@ -126,4 +123,5 @@ export class TheHero extends HTMLElement {
   connectedCallback(){
     this.render();
   }
+
 }

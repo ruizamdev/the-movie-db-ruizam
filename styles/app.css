@@ -216,34 +216,7 @@ main {
   background-image: linear-gradient(to bottom, #000000, #12060d, #1a0c19, #1c1225, #171934);
 }
 
-.trendingPreview-container {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  padding: 20px 50px;
-}
 
-.trendingPreview-header {
-  display: flex;
-  justify-content: space-between;
-}
-
-
-.trendingPreview-btn {
-  color: var(--white);
-  font-size: 1.8rem;
-  background-color: rgb(0,0,0,0.0);
-  border: none;
-  cursor: pointer;
-}
-
-.trendingPreview-movieList {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 2.5%;
-  flex-wrap: wrap;
-}
 
 .movie-container {
   position: relative;
