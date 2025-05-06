@@ -1,9 +1,21 @@
+// Nombre: theHero.mjs
+
 import { api } from  '/src/constants.mjs';
 export class TheHero extends HTMLElement {
   
   constructor(){
     super();
     this.attachShadow({mode: 'open'});
+
+    // Propiedades internas
+    this.sliderContainer = null;
+    this.currentIndex = 0;
+    this.slideInterval = null;
+    this.isPaused = false;
+
+    // 🔒 Enlazar métodos a la instancia
+    this.pauseSlider = this.pauseSlider.bind(this);
+    this.resumeSlider = this.resumeSlider.bind(this);
   }
 
   static get ObservedAttribute() {
@@ -14,6 +26,86 @@ export class TheHero extends HTMLElement {
     if (oldValue !== newValue) {
       this.render();
     }
+  }
+
+  connectedCallback(){
+    this.render();
+    requestAnimationFrame(() => {
+      this.sliderContainer = this.shadowRoot.getElementById('heroSlider');
+      this.populateSlider();
+      this.sliderContainer.addEventListener('mouseenter', this.pauseSlider);
+      this.sliderContainer.addEventListener('mouseleave', this.resumeSlider);
+      this.sliderContainer.addEventListener('touchstart', this.pauseSlider);
+      this.sliderContainer.addEventListener('touchend', this.resumeSlider);
+    })
+  }
+
+  createSlide(movie, counter) {
+    const slide = document.createElement('div');
+    slide.classList.add('hero-slide');
+
+    slide.style.backgroundImage = `url(https://image.tmdb.org/t/p/original${movie.backdrop_path})`;
+
+    slide.innerHTML = /* html */ `
+      <div id="hero-info" class="hero-info-container">
+        <span class="hero-info__rank">#${counter} en tendencias</span>
+        <h2 class="hero-info__title">${movie.title}</h2>
+        <div class="movie-yearRate">
+          <span class="hero-info__year">${new Date(movie.release_date).getFullYear()}</span>
+          <span class="hero-info__rate">⭐ ${movie.vote_average.toFixed(1)}</span>
+          <span class="hero-info__seasons">${movie.media_type === 'tv' ? movie.number_of_seasons + ' temporadas' : ''}</span>
+        </div>
+        <p class="hero-info__synopsis">${movie.overview}</p>
+        <button class="hero-info__movie-btn details-button" data-movie-id="${movie.id}">Ver detalles</button>
+      </div>
+    `;
+    return slide;
+  }
+
+  async populateSlider() {
+    const { data } = await api('/trending/movie/week');
+    const moviesSorted = data.results.sort((a, b) => b.popularity - a.popularity);
+    const top5 = moviesSorted.slice(0, 5);
+    let counter = 0;
+
+    top5.forEach((movie, index) => {
+      counter++;
+      const slide = this.createSlide(movie, counter);
+      if (index === 0) slide.classList.add('active');
+      this.sliderContainer.appendChild(slide);
+    });
+
+    this.startAutoSlide();
+  }
+
+  showSlide(index) {
+    const slides = this.shadowRoot.querySelectorAll('.hero-slide');
+    slides.forEach((slide, i) => {
+      slide.classList.remove('active');
+      if (i === index) slide.classList.add('active');
+    });
+  }
+
+  startAutoSlide() {
+    this.slideInterval = setInterval(() => {
+      if (!this.isPaused) {
+        this.currentIndex = (this.currentIndex + 1) % 5;
+        this.showSlide(this.currentIndex);
+      }
+    }, 5000);
+  }
+
+  pauseSlider() {
+    this.isPaused = true;
+  }
+
+  resumeSlider() {
+    this.isPaused = false;
+  }
+
+  render(){
+    this.shadowRoot.innerHTML = '';
+    this.shadowRoot.appendChild(this.getTemplate().content.cloneNode(true));
   }
 
   getTemplate(){
@@ -41,9 +133,8 @@ export class TheHero extends HTMLElement {
           --white: #e2e2e2;
           display: flex;
           flex-direction: column;
-          justify-content: end;
+          /* justify-content: end; */
           width: 100%;
-          height: 92vh;
           background-image: url();
           background-repeat: no-repeat;
           background-size: cover;
@@ -55,7 +146,7 @@ export class TheHero extends HTMLElement {
           display: flex;
           flex-direction: column;
           gap: 6px;
-          height: 53vh;
+          height: 92vh;
           padding: 0 50px;
           background: linear-gradient(
             to top,
@@ -65,17 +156,39 @@ export class TheHero extends HTMLElement {
           text-shadow: 1px 1px 3px rgb(0,0,0,0.35);
         }
 
+        .hero-slider::after {
+          content: '';
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          width: 100%;
+          height: 50%;
+          background-image: linear-gradient(
+            to top,
+            black,
+            transparent
+          );
+        }
+
         .hero-slide.active {
           left: 0;
           opacity: 1;
         }
 
         .hero-info-container {
-          background-color: rgba(0, 0, 0, 0.7);
-          padding: 1.5rem;
-          border-radius: 0.5rem;
-          max-width: 600px;
-          color: white;
+          z-index: 3;
+          display: flex;
+          flex-direction: column;
+          gap: 6px;
+          justify-content: flex-end;
+          height: fit-content;
+          padding: 35px 35px;
+          background: linear-gradient(
+            to right,
+            rgba(0,0,0,0.10),
+            transparent
+          );
+          text-shadow: 1px 1px 3px rgb(0,0,0,0.35);
         }
 
         .hero-slide {
@@ -90,7 +203,6 @@ export class TheHero extends HTMLElement {
           background-position: center;
           display: flex;
           align-items: flex-end;
-          padding: 2rem;
         }
 
         .hero-info__title {
@@ -137,91 +249,6 @@ export class TheHero extends HTMLElement {
           }
         }
     `;
-  }
-
-  getTrendingMovies() {
-    const sliderContainer = this.shadowRoot.getElementById('heroSlider');
-    let currentIndex = 0;
-    let slideInterval;
-    let isPaused = false;
-
-    function createSlide(movie) {
-      const slide = document.createElement('div');
-      slide.classList.add('hero-slide');
-
-      slide.style.backgroundImage = `url(https://image.tmdb.org/t/p/original${movie.backdrop_path})`;
-
-      slide.innerHTML = /* html */ `
-        <div id="hero-info" class="hero-info-container">
-          <h2 class="hero-info__title">${movie.title}</h2>
-          <div class="movie-yearRate">
-            <span class="hero-info__year">${new Date(movie.release_date).getFullYear()}</span>
-            <span class="hero-info__rate">⭐ ${movie.vote_average.toFixed(1)}</span>
-            <span class="hero-info__seasons">${movie.media_type === 'tv' ? movie.number_of_seasons + ' temporadas' : ''}</span>
-          </div>
-          <p class="hero-info__synopsis">${movie.overview}</p>
-          <button class="hero-info__movie-btn details-button" data-movie-id="${movie.id}">Ver detalles</button>
-        </div>
-      `;
-      return slide;
-    }
-
-    async function populateSlider() {
-      const { data } = await api('/trending/movie/day');
-      const moviesSorted = data.results.sort((a, b) => b.popularity - a.popularity);
-      const top5 = moviesSorted.slice(0, 5);
-
-      top5.forEach((movie, index) => {
-        const slide = createSlide(movie);
-        if (index === 0) slide.classList.add('active');
-        sliderContainer.appendChild(slide);
-      });
-
-      startAutoSlide();
-    }
-
-    function showSlide(index) {
-      const slides = document.querySelectorAll('.hero-slide');
-      slides.forEach((slide, i) => {
-        slide.classList.remove('active');
-        if (i === index) slide.classList.add('active');
-      });
-    }
-
-    function startAutoSlide() {
-      slideInterval = setInterval(() => {
-        if (!isPaused) {
-          currentIndex = (currentIndex + 1) % 5;
-          showSlide(currentIndex);
-        }
-      }, 5000);
-    }
-
-    function pauseSlider() {
-      isPaused = true;
-    }
-
-    function resumeSlider() {
-      isPaused = false;
-    }
-
-    sliderContainer.addEventListener('mouseenter', pauseSlider);
-    sliderContainer.addEventListener('mouseleave', resumeSlider);
-    sliderContainer.addEventListener('touchstart', pauseSlider);
-    sliderContainer.addEventListener('touchend', resumeSlider);
-
-    // Inicializar el slider
-    populateSlider();
-  }
-
-  render(){
-    this.shadowRoot.innerHTML = '';
-    this.shadowRoot.appendChild(this.getTemplate().content.cloneNode(true));
-  }
-
-  connectedCallback(){
-    this.render();
-    this.getTrendingMovies();
   }
 
 }

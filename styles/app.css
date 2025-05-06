@@ -118,50 +118,6 @@ body {
   transition: transform 500ms;
 }
 
-.hero-info-container {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-  height: 53vh;
-  padding: 0 50px;
-  background: linear-gradient(
-    to top,
-    #000,
-    transparent
-  );
-  text-shadow: 1px 1px 3px rgb(0,0,0,0.35);
-}
-
-.hero-info__title {
-  font-size: 8rem;
-  max-width: 920px;
-  font-weight: 900;
-}
-
-.movie-yearRate {
-  margin: 5px 0;
-  display: flex;
-  gap: 0.75%;
-}
-
-.hero-info__synopsis {
-  font-size: 1.8rem;
-  max-width: 520px;
-}
-
-.hero-info__movie-btn {
-  margin: 20px 0;
-  width: 150px;
-  height: 42px;
-  border-radius: 5px;
-  border: none;
-  color: var(--primary-dark-color);
-  font-size: 1.9rem;
-  background-color: rgb(from var(--secondary-light-color) r g b / 0.85);
-  cursor: pointer;
-  box-shadow: 0px 10px 20px -18px rgb(0,0,0,0.35);
-}
-
 .user-assets {
   display: flex;
   gap: 20px;
@@ -218,57 +174,7 @@ main {
 
 
 
-.movie-container {
-  position: relative;
-  width: 18%;
-  margin-block-end: 2.5%;
-}
 
-.movie-img {
-  width: 100%;
-  transition: filter 500ms;
-}
-
-.movie-details-container {
-  position: absolute;
-  top: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: center;
-  gap: 3%;
-  width: 100%;
-  height: 100%;
-  padding: 0 9%;
-  color: var(--white);
-  transition: display 500ms;
-}
-
-.movie-title {
-  font-size: 3rem;
-  font-weight: 800;
-}
-
-.movie-year,
-.movie-rate, 
-.movie-votes, 
-.movie-popularity {
-  font-size: 1.85rem;
-  font-weight: 700;
-}
-
-
-
-.moreDetails-btn {
-  cursor: pointer;
-  width: 40%;
-  height: 36px;
-  border: none;
-  border-radius: 4px;
-  color: var(--white);
-  background-color: rgb(from var(--primary-dark-color) r g b / 0.85);
-  box-shadow: 0px 10px 20px -18px rgb(0,0,0,0.35);
-}
 
 .categoriesPreview-container {
   display: flex;
@@ -342,9 +248,7 @@ footer {
   transition: opacity 0.3s ease;
 }
 
-.invisible {
-  visibility: hidden;
-}
+
 
 @media(hover: hover) {
   .movie-linkBtn:hover {
@@ -384,22 +288,7 @@ footer {
   .search-icon-container:hover .search-icon {
     transform: scale(1.12)
   }
-  .movie-container:hover {
-    outline: 2px solid var(--secondary-light-color);
-    outline-offset: 10px;
-  }
   
-  .movie-container:hover .movie-img {
-    filter: brightness(0.10);
-  }
-  .moreDetails-btn:hover {
-    color: var(--primary-dark-color);
-    background-color: rgb(from var(--secondary-light-color) r g b / 0.85);
-  }
-  .moreDetails-btn:active {
-    color: var(--primary-light-color);
-    background-color: rgb(from var(--secondary-dark-color) r g b / 0.85);
-  }
 }
 
 

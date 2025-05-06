@@ -35,12 +35,6 @@ header-navbar {
   box-sizing: border-box;
 }
 
-the-hero {
-  --font: "Inter", sans-serif;
-  --font-logo: "Righteous", sans-serif;
-  box-sizing: border-box;
-}
-
 @media (max-width: 768px){
   header-navbar {
     padding-inline: 30px;

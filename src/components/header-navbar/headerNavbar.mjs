@@ -140,7 +140,7 @@ export class HeaderNavbar extends HTMLElement {
         height: 120px;
         color: var(--white);
         background: linear-gradient(rgb(0, 0, 0), transparent);
-        z-index: 2;
+        z-index: 5;
         transition: 600ms;
     }
 
