@@ -181,21 +181,19 @@ export class TrendingSection extends HTMLElement {
           width: 100%;
       }
       .movie-details {
+        box-sizing: border-box;
         position: absolute;
         top: 0;
         left: 0;
         display: flex;
         flex-direction: column;
+        justify-content: space-evenly;
         gap: min(1rem, 3vw);
         width: 100%;
         height: 100%;
-        background: rgba(0,0,0,0.85);
-        color: var(--white);
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
         padding: min(2rem, 4vw);
-        box-sizing: border-box;
+        color: var(--white);
+        background: rgba(0,0,0,0.85);
         outline: min(0.3rem, 0.5vw) solid var(--secondary-light-color);
         outline-offset: -5px;
         transition: all 0.3s ease-in-out;
