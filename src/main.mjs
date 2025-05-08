@@ -7,3 +7,17 @@ customElements.define('the-hero', TheHero);
 customElements.define('header-navbar', HeaderNavbar);
 customElements.define('trending-section', TrendingSection);
 customElements.define('movie-details-window', MovieDetailsWindow);
+
+function createMovieDetailsWindow(movieId) {
+    const body = document.body;
+    body.style.position = 'fixed';
+    body.style.top = '0';
+    body.style.left = '0';
+    body.style.bottom = '0';
+    body.style.right = '0';
+    const movieDetailsWindow = document.createElement('movie-details-window');
+    movieDetailsWindow.setAttribute('movieId', movieId);
+    body.prepend(movieDetailsWindow);
+  }
+
+  export { createMovieDetailsWindow };

@@ -1,6 +1,8 @@
 // Nombre: theHero.mjs
 
 import { api } from  '/src/constants.mjs';
+import { createMovieDetailsWindow } from '/src/main.mjs';
+
 export class TheHero extends HTMLElement {
   
   constructor(){
@@ -60,7 +62,7 @@ export class TheHero extends HTMLElement {
           <span class="hero-info__genres">${genreNames}</span>
         </div>
         <p class="hero-info__synopsis">${movie.overview}</p>
-        <button class="hero-info__movie-btn details-button" data-movie-id="${movie.id}">Ver detalles</button>
+        <button class="hero-info__movie-btn details-button" id="${movie.id}">Ver detalles</button>
       </div>
     `;
     return slide;
@@ -80,6 +82,14 @@ export class TheHero extends HTMLElement {
       const slide = this.createSlide(movie, counter);
       if (index === 0) slide.classList.add('active');
       this.sliderContainer.appendChild(slide);
+    });
+
+    const detailsButtons = this.shadowRoot.querySelectorAll('.hero-info__movie-btn');
+    detailsButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        const movieId = button.id;
+        createMovieDetailsWindow(movieId);
+      });
     });
 
     this.startAutoSlide();

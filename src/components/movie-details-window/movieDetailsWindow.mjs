@@ -1,14 +1,13 @@
 // movieDetailsWindow.mjs
 
 import { api } from '/src/constants.mjs'
-
 export class MovieDetailsWindow extends HTMLElement {
   
   constructor() {
     super();
     this.attachShadow({ mode: 'open' });
     // Variables internas o bindings van aquí
-    this.setAttribute('movie-id', '')
+    this.movieId = this.getAttribute('movie-id');
   }
 
   static get observedAttributes() {
@@ -40,7 +39,7 @@ export class MovieDetailsWindow extends HTMLElement {
   createMovieDetailsWindow(movie) {
     const container = document.createElement('section');
     container.classList.add('details-container');
-    const host = this.style.backgroundImage = `url('https://api.themoviedb.org/3/movie/${movie.backgdrop_path}')`
+    this.style.backgroundImage = `url('https://api.themoviedb.org/3/movie/${movie.backgdrop_path}')`
 
     container.innerHTML = /* html */ `
       <img class="movie-poster" src="https://image.tmdb.org/t/p/w500${movie.poster_path}" alt="${movie.title}"/>
