@@ -2,8 +2,8 @@
   /* colores */
   --primary-dark-color: #171934;
   --secondary-dark-color: #77767c;
-  /* --secondary-light-color: #b8b7f8; */
-  --secondary-light-color: #cb8dec;
+  --secondary-light-color: #b8b7f8;
+  --tertiary-light-color: #cb8dec;
   --primary-light-color: #e8ddff;
   --white: #e2e2e2;
   
@@ -25,7 +25,17 @@ html {
 }
 
 body {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
   font-size: 1.6rem;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
 }
 
 header-navbar {

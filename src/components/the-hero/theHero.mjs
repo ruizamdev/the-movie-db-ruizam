@@ -44,16 +44,20 @@ export class TheHero extends HTMLElement {
     const slide = document.createElement('div');
     slide.classList.add('hero-slide');
 
+    // obtener generos de la pelicula
+    const genreNames = (movie.genre_ids || []).map(id => this.genreMap.get(id) || 'Desconocido').join(', ');
+
     slide.style.backgroundImage = `url(https://image.tmdb.org/t/p/original${movie.backdrop_path})`;
 
     slide.innerHTML = /* html */ `
       <div id="hero-info" class="hero-info-container">
-        <span class="hero-info__rank">#${counter} en tendencias</span>
+        <span class="hero-info__rank"><strong>#${counter}</strong> en tendencias</span>
         <h2 class="hero-info__title">${movie.title}</h2>
         <div class="movie-yearRate">
           <span class="hero-info__year">${new Date(movie.release_date).getFullYear()}</span>
           <span class="hero-info__rate">⭐ ${movie.vote_average.toFixed(1)}</span>
           <span class="hero-info__seasons">${movie.media_type === 'tv' ? movie.number_of_seasons + ' temporadas' : ''}</span>
+          <span class="hero-info__genres">${genreNames}</span>
         </div>
         <p class="hero-info__synopsis">${movie.overview}</p>
         <button class="hero-info__movie-btn details-button" data-movie-id="${movie.id}">Ver detalles</button>
@@ -63,7 +67,10 @@ export class TheHero extends HTMLElement {
   }
 
   async populateSlider() {
-    const { data } = await api('/trending/movie/week');
+    const { data: genresData } = await api('/genre/movie/list?language=es');
+    this.genreMap = new Map(genresData.genres.map(genre => [genre.id, genre.name]));
+
+    const { data } = await api('/trending/movie/day');
     const moviesSorted = data.results.sort((a, b) => b.popularity - a.popularity);
     const top5 = moviesSorted.slice(0, 5);
     let counter = 0;
@@ -182,7 +189,7 @@ export class TheHero extends HTMLElement {
           gap: 6px;
           justify-content: flex-end;
           height: fit-content;
-          padding: 35px 35px;
+          padding: 45px 60px;
           background: linear-gradient(
             to right,
             rgba(0,0,0,0.10),
@@ -205,6 +212,19 @@ export class TheHero extends HTMLElement {
           align-items: flex-end;
         }
 
+        .hero-info__rank {
+          width: fit-content;
+          font-size: max(1.4rem, 1.2vw);
+          font-weight: 700;
+          border: 1px solid var(--tertiary-light-color);
+          border-radius: 5px;
+          padding: 5px 10px;
+        }
+
+        .hero-info__rank strong {
+          color: var(--tertiary-light-color);
+        }
+
         .hero-info__title {
           font-size: 8rem;
           max-width: 920px;
@@ -214,12 +234,16 @@ export class TheHero extends HTMLElement {
 
         .movie-yearRate {
           display: flex;
-          gap: 0.75%;
+          gap: 2%;
           margin: 5px 0;
         }
 
+        .movie-yearRate span {
+          font-weight: 700;
+        }
+
         .hero-info__synopsis {
-          font-size: 1.8rem;
+          font-size: max(1.4rem, 1vw);
           max-width: 520px;
         }
 
