@@ -16,7 +16,7 @@ function createMovieDetailsWindow(movieId) {
     body.style.bottom = '0';
     body.style.right = '0';
     const movieDetailsWindow = document.createElement('movie-details-window');
-    movieDetailsWindow.setAttribute('movieId', movieId);
+    movieDetailsWindow.setAttribute('movie-id', movieId);
     body.prepend(movieDetailsWindow);
   }
 
