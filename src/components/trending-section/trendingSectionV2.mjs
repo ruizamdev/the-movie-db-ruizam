@@ -1,4 +1,5 @@
 import { api } from '/src/constants.mjs';
+import { createMovieDetailsWindow } from '/src/main.mjs';
 
 export class TrendingSection extends HTMLElement {
   constructor() {
@@ -52,6 +53,12 @@ export class TrendingSection extends HTMLElement {
     const details = container.querySelector('.movie-details');
     container.addEventListener('mouseenter', () => details.classList.remove('hidden'));
     container.addEventListener('mouseleave', () => details.classList.add('hidden'));
+
+    const detailsButton = container.querySelector('.movie-btn.details-button');
+    detailsButton.addEventListener('click', (e) => {
+      const movieId = e.target.id;
+      createMovieDetailsWindow(movieId);
+    });
 
     this.shadowRoot.querySelector('.trendingPreview-movieList').appendChild(container);
   }
@@ -215,7 +222,8 @@ export class TrendingSection extends HTMLElement {
 
       .movie-btn {
         width: 50%;
-        height: fit-content;
+        max-height: 42px;
+        height: 4vh;
         margin: min(4rem, 6vw) auto;
         border-radius: 5px;
         padding: min(0.5rem, 1vw) min(1rem, 2vw);

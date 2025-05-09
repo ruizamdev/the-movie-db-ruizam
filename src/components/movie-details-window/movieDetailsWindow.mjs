@@ -52,15 +52,11 @@ export class MovieDetailsWindow extends HTMLElement {
           <span class="movie-details__year">${movie.release_date.slice(0,4)}</span>
           <span class="movie-details__rate">${movie.vote_average.toFixed(1)}</span>
         </div>
-        <p class="movie-details__genres"></p>
+        <p class="movie-details__genres">Género: ${movie.genres.map(genre => genre.name).join(', ')}</p>
         <p class="movie-details__overview">${movie.overview}</p>
         <div class="movie-details__production">
-          <span class="movie-details__production__title">Productores:</span>
+          <span class="movie-details__production__title">Productoras:</span>
           <span class="movie-details__production__name">${(movie.production_companies || []).map(company => company.name).join(', ')}</span> 
-      </div>
-      <div class="movie-details__cast">
-        <span class="movie-details__cast__title">Reparto:</span>  
-        <span class="movie-details__cast__names">${(movie.cast || []).map(member => member.name).join(', ')}</span>
       </div>
       <span class="movie-details__close">x</span>
     `
@@ -126,11 +122,11 @@ export class MovieDetailsWindow extends HTMLElement {
         align-items: center;
         gap: 3%;
         width: 95vw;
+        margin-block-start: 8vh;
       }
 
       .movie-poster-container {
-        width: 30%;
-        height: fit-content;
+        width: 20vh;
       }
 
       .movie-poster {
@@ -140,8 +136,7 @@ export class MovieDetailsWindow extends HTMLElement {
       .movie-details {
         display: flex;
         flex-direction: column;
-        justify-content: center;
-        gap: 10%;
+        gap: 3%;
         width: 60%;
         height: 100vh;
       }

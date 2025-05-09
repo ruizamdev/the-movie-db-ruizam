@@ -236,7 +236,7 @@ export class TheHero extends HTMLElement {
         }
 
         .hero-info__title {
-          font-size: clamp(2.7rem, 5vw, 8rem);
+          font-size: clamp(4rem, 5vw, 8rem);
           max-width: 920px;
           font-weight: 900;
           margin: 0;
@@ -262,12 +262,13 @@ export class TheHero extends HTMLElement {
         .hero-info__movie-btn {
           margin: 20px 0;
           width: 150px;
+          max-width: 400px;
           height: 42px;
           border-radius: 5px;
           border: none;
           color: var(--primary-dark-color);
           font-size: clamp(1.7rem, 1.5vw, 1.9rem);
-          background-color: rgb(from var(--tertiary-light-color) r g b / 0.65);
+          background-color: var(--tertiary-light-color);
           cursor: pointer;
           box-shadow: 0px 10px 20px -18px rgb(0,0,0,0.35);
           transition: background 300ms, transform 300ms;
@@ -275,24 +276,20 @@ export class TheHero extends HTMLElement {
         @media (hover: hover) {
           .hero-info__movie-btn:hover {
             transform: scale(1.03);
-            background-color: rgb(from var(--secondary-light-color) r g b / 0.65);
+            background-color: var(--secondary-light-color);
             
           }
           .hero-info__movie-btn:active {
             transform: scale(1.08);
             color: var(--white);
-            background-color: rgb(from var(--primary-dark-color) r g b / 0.65);
+            background-color: var(--primary-dark-color);
           }
         }
 
         /* Media Queries */
 
         /*  */
-        @media (width <= 480px) {
-          .hero-info__movie-btn {
-            width: 100%;
-          }
-        }
+
         @media (width <= 601px) {
           .hero-info-container {
             padding: 20px 25px;
@@ -300,7 +297,13 @@ export class TheHero extends HTMLElement {
         }
         @media (width <= 768px) {
           .hero-info-container {
+            width: 100%;
             padding: 30px 35px;
+            background: rgba(0,0,0,0.40);
+          }
+          .hero-info__movie-btn {
+            align-self: center;
+            width: 100%;
           }
         }
     `;
