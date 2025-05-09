@@ -202,7 +202,7 @@ export class TheHero extends HTMLElement {
           padding: 45px 60px;
           background: linear-gradient(
             to right,
-            rgba(0,0,0,0.10),
+            rgba(0,0,0,0.68),
             transparent
           );
           text-shadow: 1px 1px 3px rgb(0,0,0,0.35);
@@ -224,7 +224,7 @@ export class TheHero extends HTMLElement {
 
         .hero-info__rank {
           width: fit-content;
-          font-size: max(1.4rem, 1.2vw);
+          font-size: clamp(1.3rem, 1.2vw, 1.5rem);
           font-weight: 700;
           border: 1px solid var(--tertiary-light-color);
           border-radius: 5px;
@@ -236,7 +236,7 @@ export class TheHero extends HTMLElement {
         }
 
         .hero-info__title {
-          font-size: 8rem;
+          font-size: clamp(2.7rem, 5vw, 8rem);
           max-width: 920px;
           font-weight: 900;
           margin: 0;
@@ -244,16 +244,18 @@ export class TheHero extends HTMLElement {
 
         .movie-yearRate {
           display: flex;
+          flex-wrap: wrap;
           gap: 2%;
           margin: 5px 0;
         }
 
         .movie-yearRate span {
+          font-size: clamp(1.4rem, 1vw, 1.6rem);
           font-weight: 700;
         }
 
         .hero-info__synopsis {
-          font-size: max(1.4rem, 1vw);
+          font-size: clamp(1.4rem, 1.5vw, 1.8rem);
           max-width: 520px;
         }
 
@@ -264,7 +266,7 @@ export class TheHero extends HTMLElement {
           border-radius: 5px;
           border: none;
           color: var(--primary-dark-color);
-          font-size: 1.9rem;
+          font-size: clamp(1.7rem, 1.5vw, 1.9rem);
           background-color: rgb(from var(--tertiary-light-color) r g b / 0.65);
           cursor: pointer;
           box-shadow: 0px 10px 20px -18px rgb(0,0,0,0.35);
@@ -280,6 +282,25 @@ export class TheHero extends HTMLElement {
             transform: scale(1.08);
             color: var(--white);
             background-color: rgb(from var(--primary-dark-color) r g b / 0.65);
+          }
+        }
+
+        /* Media Queries */
+
+        /*  */
+        @media (width <= 480px) {
+          .hero-info__movie-btn {
+            width: 100%;
+          }
+        }
+        @media (width <= 601px) {
+          .hero-info-container {
+            padding: 20px 25px;
+          }
+        }
+        @media (width <= 768px) {
+          .hero-info-container {
+            padding: 30px 35px;
           }
         }
     `;

@@ -54,8 +54,15 @@ export class MovieDetailsWindow extends HTMLElement {
         </div>
         <p class="movie-details__genres"></p>
         <p class="movie-details__overview">${movie.overview}</p>
-        <span class="movie-details__close">x</span>
+        <div class="movie-details__production">
+          <span class="movie-details__production__title">Productores:</span>
+          <span class="movie-details__production__name">${(movie.production_companies || []).map(company => company.name).join(', ')}</span> 
       </div>
+      <div class="movie-details__cast">
+        <span class="movie-details__cast__title">Reparto:</span>  
+        <span class="movie-details__cast__names">${(movie.cast || []).map(member => member.name).join(', ')}</span>
+      </div>
+      <span class="movie-details__close">x</span>
     `
 
     const detailsBtn = container.querySelector('.movie-details__close');
@@ -114,11 +121,11 @@ export class MovieDetailsWindow extends HTMLElement {
       }
 
       .details-container {
+        position: relative;
         display: flex;
-        justify-content: center;
         align-items: center;
-        gap: 10%;
-        width: 80%;
+        gap: 3%;
+        width: 95vw;
       }
 
       .movie-poster-container {
@@ -133,11 +140,20 @@ export class MovieDetailsWindow extends HTMLElement {
       .movie-details {
         display: flex;
         flex-direction: column;
-        gap: 5.5vh;
+        justify-content: center;
+        gap: 10%;
+        width: 60%;
+        height: 100vh;
       }
 
       .movie-details span {
         display: inline-block;
+      }
+
+      .movie-details__close {
+        position: absolute;
+        top: 0;
+        right: 0;
       }
     
     `;

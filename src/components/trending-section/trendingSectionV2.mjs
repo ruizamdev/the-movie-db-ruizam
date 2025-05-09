@@ -129,7 +129,8 @@ export class TrendingSection extends HTMLElement {
       .trendingPreview h2 { 
         margin: 0;
         padding-block: 25px;
-        padding-inline-start: 5px;  
+        padding-inline-start: 5px;
+        font-size: clamp(1.6rem, 2vw, 2.4rem);
       }
 
       .trendingPreview-movieList { 
@@ -239,6 +240,12 @@ export class TrendingSection extends HTMLElement {
         visibility: hidden;
         opacity: 0;
         pointer-events: none;
+      }
+
+      @media (width <= 480px) {
+        .trendingPreview h2 {
+          padding-inline: 20px;
+        }
       }
     `;
   }

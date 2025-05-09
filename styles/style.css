@@ -33,6 +33,10 @@ a {
   color: inherit;
 }
 
+footer {
+  font-size: clamp(1.2rem, 1vw, 1.6rem);
+}
+
 header-navbar {
   --font: "Inter", sans-serif;
   --font-logo: "Righteous", sans-serif;
