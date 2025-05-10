@@ -1,6 +1,6 @@
 // movieDetailsWindow.mjs
 
-import { api } from '/src/constants.mjs'
+import { api } from '../../constants.mjs'
 export class MovieDetailsWindow extends HTMLElement {
   
   constructor() {

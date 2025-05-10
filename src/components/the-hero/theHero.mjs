@@ -1,7 +1,7 @@
 // Nombre: theHero.mjs
 
-import { api } from  '/src/constants.mjs';
-import { createMovieDetailsWindow } from '/src/main.mjs';
+import { api } from  '../../constants.mjs';
+import { createMovieDetailsWindow } from '../../main.mjs';
 
 export class TheHero extends HTMLElement {
   
