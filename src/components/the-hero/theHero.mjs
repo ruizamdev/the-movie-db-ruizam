@@ -69,7 +69,7 @@ export class TheHero extends HTMLElement {
   }
 
   async populateSlider() {
-    const { data: genresData } = await api('/genre/movie/list?language=es');
+    const { data: genresData } = await api('/genre/movie/list?language=es_MX');
     this.genreMap = new Map(genresData.genres.map(genre => [genre.id, genre.name]));
 
     const { data } = await api('/trending/movie/day');

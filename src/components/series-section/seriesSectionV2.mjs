@@ -1,7 +1,6 @@
 import { api } from '/src/constants.mjs';
-import { createMovieDetailsWindow } from '/src/main.mjs';
 
-export class TrendingSection extends HTMLElement {
+export class SeriesSection extends HTMLElement {
   constructor() {
     super();
     this.attachShadow({ mode: 'open' });
@@ -9,7 +8,7 @@ export class TrendingSection extends HTMLElement {
 
   connectedCallback() {
     this.render();
-    this.populateTrendingSection();
+    this.populateSeriesSection();
     this.scrolling();    
   }
 
@@ -18,43 +17,41 @@ export class TrendingSection extends HTMLElement {
   }
 
 
-  async populateTrendingSection() {
+  async populateSeriesSection() {
     // obtener todos los generos
-    const { data: genresData } = await api('/genre/movie/list?language=es-MX');
-    this.genreMap = new Map(genresData.genres.map(genre => [genre.id, genre.name]));
+    /* const { data: genresData } = await api('/genre/serie/list?language=es_MX');
+    this.genreMap = new Map(genresData.genres.map(genre => [genre.id, genre.name])); */
 
-    // obtener top trending peliculas (20 items)
-    const { data } = await api('/trending/movie/day?language=es_MX');
-    const moviesSorted = data.results.sort((a, b) => b.popularity - a.popularity);
+    // Obtener series en tendencia
+    const { data } = await api('/trending/tv/day?language=es_MX');
+    const seriesSorted = data.results.sort((a, b) => b.popularity - a.popularity);
     
     // Crear las cards de cada pelicula
-    moviesSorted.forEach((movie, idx) => this.createMovieCard(movie, idx + 1));
+    seriesSorted.forEach((serie, idx) => this.createMovieCard(serie, idx + 1));
   }
 
-  createMovieCard(movie, rank) {
+  createMovieCard(serie, rank) {
     const container = document.createElement('li');
-    container.classList.add('movie-container');
+    container.classList.add('serie-container');
 
     // obtener generos de la pelicula
-    const genreNames = (movie.genre_ids || []).map(id => this.genreMap.get(id) || 'Desconocido').join(', ');
+    // const genreNames = (serie.genre_ids || []).map(id => this.genreMap.get(id) || 'Desconocido').join(', ');
 
     container.innerHTML = /* html */ `
-      <img class="movie-img" src="https://image.tmdb.org/t/p/w500${movie.poster_path}" alt="${movie.title}" />
-      <div class="movie-details hidden">
+      <img class="serie-img" src="https://image.tmdb.org/t/p/w500${serie.poster_path}" alt="${serie.title}" />
+      <div class="serie-details hidden">
         <span class="top-number"><strong>#${rank}</strong></span>
-        <span class="movie-title"><strong>Titulo</strong>: ${movie.title}</span>
-        <span class="movie-year"><strong>Año</strong>: ${movie.release_date.slice(0,4)}</span>
-        <span class="movie-rate"><strong>Calificación</strong>: ${movie.vote_average.toFixed(1)}</span>
-        <span class="movie-genres"><strong>Género</strong>: ${genreNames}</span>
-        <button id="${movie.id}" class="movie-btn details-button">Ver detalles</button>
+        <span class="serie-title"><strong>Titulo</strong>: ${serie.title}</span>
+        <span class="serie-rate"><strong>Calificación</strong>: ${serie.vote_average.toFixed(1)}</span>
+        <button id="${serie.id}" class="serie-btn details-button">Ver detalles</button>
       </div>
     `;
 
-    const details = container.querySelector('.movie-details');
+    const details = container.querySelector('.serie-details');
     container.addEventListener('mouseenter', () => details.classList.remove('hidden'));
     container.addEventListener('mouseleave', () => details.classList.add('hidden'));
 
-    const detailsButton = container.querySelector('.movie-btn.details-button');
+    const detailsButton = container.querySelector('.serie-btn.details-button');
     detailsButton.addEventListener('click', (e) => {
       const movieId = e.target.id;
       createMovieDetailsWindow(movieId);
@@ -80,7 +77,7 @@ export class TrendingSection extends HTMLElement {
     const tpl = document.createElement('template');
     tpl.innerHTML = /* html */ `
       <section class="trendingPreview">
-        <h2>Top 20 Películas en Tendencias</h2>
+        <h2>Top 20 Series de TV en Tendencias</h2>
           <ul class="trendingPreview-movieList">
           <button class="scroll-btn prev" aria-label="Anterior">\u276E</button>
           <button class="scroll-btn next" aria-label="Siguiente">\u276F</button>
@@ -177,18 +174,18 @@ export class TrendingSection extends HTMLElement {
         display: none; /* Chrome, Safari y Opera */
       }
 
-      .movie-container {
+      .serie-container {
         flex: 0 0 auto; /* No se expandirá ni contraerá */
         scroll-snap-align: start; /* Alinear al inicio del contenedor */
         position: relative; 
         width: 19.8%;
       }
 
-      .movie-img {
+      .serie-img {
           display: block;
           width: 100%;
       }
-      .movie-details {
+      .serie-details {
         box-sizing: border-box;
         position: absolute;
         top: 0;
@@ -207,20 +204,20 @@ export class TrendingSection extends HTMLElement {
         transition: all 0.3s ease-in-out;
       }
 
-      .movie-details span {
+      .serie-details span {
         font-size: clamp(1.2rem, 2vw, 2rem);
         margin-inline: min(4rem, 6vw);
       }
 
-      .movie-details span strong {
+      .serie-details span strong {
         color: var(--secondary-light-color);
       }
 
-      .movie-details span.top-number {
+      .serie-details span.top-number {
         font-size: clamp(1.5rem, 3vw, 4rem);
       }
 
-      .movie-btn {
+      .serie-btn {
         width: 50%;
         max-height: 42px;
         height: 4vh;
@@ -234,7 +231,7 @@ export class TrendingSection extends HTMLElement {
         cursor: pointer;
       }
 
-      .movie-btn:hover {
+      .serie-btn:hover {
         background-color: var(--tertiary-light-color);
         color: var(--primary-dark-color);
         box-shadow: 0px 10px 20px -18px rgb(0, 0, 0, 0.35);
