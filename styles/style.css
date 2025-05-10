@@ -2,8 +2,8 @@
   /* colores */
   --primary-dark-color: #171934;
   --secondary-dark-color: #77767c;
-  /* --secondary-light-color: #b8b7f8; */
-  --secondary-light-color: #cb8dec;
+  --secondary-light-color: #b8b7f8;
+  --tertiary-light-color: #cb8dec;
   --primary-light-color: #e8ddff;
   --white: #e2e2e2;
   
@@ -28,16 +28,19 @@ body {
   font-size: 1.6rem;
 }
 
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+footer {
+  font-size: clamp(1.2rem, 1vw, 1.6rem);
+}
+
 header-navbar {
   --font: "Inter", sans-serif;
   --font-logo: "Righteous", sans-serif;
   padding-inline: 50px;
-  box-sizing: border-box;
-}
-
-the-hero {
-  --font: "Inter", sans-serif;
-  --font-logo: "Righteous", sans-serif;
   box-sizing: border-box;
 }
 

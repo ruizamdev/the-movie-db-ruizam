@@ -1,38 +1,25 @@
-// debugger;
-/* Import components */
-import { TheHero } from "./components/hero/hero.mjs";
-import { HeaderNavbar } from "./components/header-navbar/header-navbar.mjs";
-import { getTrendingMovies } from "./goHome.mjs";
+import { TheHero } from './components/the-hero/theHero.mjs';
+import { HeaderNavbar } from './components/header-navbar/headerNavbar.mjs';
+import { TrendingSection } from './components/trending-section/trendingSectionV2.mjs';
+import { SeriesSection } from './components/series-section/seriesSectionV2.mjs';
+import { MovieDetailsWindow } from './components/movie-details-window/movieDetailsWindow.mjs';
 
-/* Define components */
 customElements.define('the-hero', TheHero);
 customElements.define('header-navbar', HeaderNavbar);
+customElements.define('trending-section', TrendingSection);
+customElements.define('series-section', SeriesSection);
+customElements.define('movie-details-window', MovieDetailsWindow);
 
+function createMovieDetailsWindow(movieId) {
+    const body = document.body;
+    body.style.position = 'fixed';
+    body.style.top = '0';
+    body.style.left = '0';
+    body.style.bottom = '0';
+    body.style.right = '0';
+    const movieDetailsWindow = document.createElement('movie-details-window');
+    movieDetailsWindow.setAttribute('movie-id', movieId);
+    body.prepend(movieDetailsWindow);
+  }
 
-/* function delay(ms) {
-  return new Promise(resolve => setTimeout(resolve, ms));
-};
-
-async function loading() {
-  movieDetailsWindow.classList.remove('inactive');
-  movieDetailsWindowLoader.classList.remove('inactive');
-  await delay(1500);
-  movieDetailsWindow.classList.add('inactive');
-  movieDetailsWindowLoader.classList.add('inactive');
-};
-
-loading(); */
-
-if(location.hash.startsWith('#peliculas')) {
-
-} else if (location.hash.startsWith('#series')) {
-
-} else if (location.hash.startsWith('#personas')) {
-
-} else if (location.hash.startsWith('#Buscar')) {
-
-} else if (location.hash.startsWith('#favoritos')){
-
-} else {
-  getTrendingMovies();
-}
+  export { createMovieDetailsWindow };
